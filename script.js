@@ -527,4 +527,110 @@ const mobileMenuObserver = new MutationObserver((mutations) => {
 
 mobileMenuObserver.observe(navMenu, { attributes: true });
 
+// Reviews Carousel
+document.addEventListener('DOMContentLoaded', () => {
+    const reviewsTrack = document.getElementById('reviewsTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    if (reviewsTrack && prevBtn && nextBtn) {
+        let currentIndex = 0;
+        const reviewCards = reviewsTrack.querySelectorAll('.review-card');
+        const totalCards = reviewCards.length;
+        const cardsToShow = window.innerWidth <= 768 ? 1 : (window.innerWidth <= 1024 ? 2 : 3);
+        const cardWidth = 350 + 30; // card width + gap
+        
+        // Auto scroll functionality
+        let autoScrollInterval;
+        
+        function updateCarousel() {
+            const translateX = -(currentIndex * cardWidth);
+            reviewsTrack.style.transform = `translateX(${translateX}px)`;
+            
+            // Update button states
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= totalCards - cardsToShow;
+        }
+        
+        function nextSlide() {
+            if (currentIndex < totalCards - cardsToShow) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalCards - cardsToShow; // Loop to end
+            }
+            updateCarousel();
+        }
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(nextSlide, 4000);
+        }
+        
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            nextSlide();
+            startAutoScroll();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            stopAutoScroll();
+            prevSlide();
+            startAutoScroll();
+        });
+        
+        // Pause auto-scroll on hover
+        reviewsTrack.addEventListener('mouseenter', stopAutoScroll);
+        reviewsTrack.addEventListener('mouseleave', startAutoScroll);
+        
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+        
+        reviewsTrack.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            stopAutoScroll();
+        });
+        
+        reviewsTrack.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            
+            if (Math.abs(diffX) > 50) { // Minimum swipe distance
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+            startAutoScroll();
+        });
+        
+        // Responsive updates
+        window.addEventListener('resize', () => {
+            const newCardsToShow = window.innerWidth <= 768 ? 1 : (window.innerWidth <= 1024 ? 2 : 3);
+            if (currentIndex >= totalCards - newCardsToShow) {
+                currentIndex = Math.max(0, totalCards - newCardsToShow);
+            }
+            updateCarousel();
+        });
+        
+        // Initialize
+        updateCarousel();
+        startAutoScroll();
+    }
+});
+
 console.log('Su Takip website loaded successfully! 💧');
