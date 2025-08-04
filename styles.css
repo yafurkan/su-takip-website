@@ -867,6 +867,17 @@ body {
     margin-bottom: 5px;
 }
 
+.contact-item p a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item p a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
 .social-links {
     display: flex;
     gap: 15px;
