@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Su Takip - Sağlıklı Yaşamın Anahtarı</title>
+    <meta name="description" content="Günlük su ihtiyacınızı takip edin, sağlıklı kalın. Su Takip uygulaması ile kişiselleştirilmiş hedefler ve akıllı hatırlatmalar.">
+    <meta name="keywords" content="su takip, su içme, sağlık, fitness, günlük su, hidrasyon">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Su Takip - Sağlıklı Yaşamın Anahtarı">
+    <meta property="og:description" content="Günlük su ihtiyacınızı takip edin, sağlıklı kalın">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="water-drop-loader">
+            <div class="drop"></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
+        </div>
+        <p>Su Takip Yükleniyor...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tint"></i>
+                <span>Su Takip</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Ana Sayfa</a></li>
+                <li><a href="#features" class="nav-link">Özellikler</a></li>
+                <li><a href="#screenshots" class="nav-link">Ekran Görüntüleri</a></li>
+                <li><a href="#stats" class="nav-link">İstatistikler</a></li>
+                <li><a href="#download" class="nav-link">İndir</a></li>
+                <li><a href="#contact" class="nav-link">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="water-waves">
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+            </div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Su Takip</span>
+                    <span class="title-line">Sağlıklı Yaşamın Anahtarı</span>
+                </h1>
+                <p class="hero-subtitle">Günlük su ihtiyacınızı takip edin, sağlıklı kalın</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fab fa-apple"></i>
+                        App Store'dan İndir
+                    </a>
+                    <a href="#download" class="btn btn-secondary">
+                        <i class="fab fa-google-play"></i>
+                        Google Play'den İndir
+                    </a>
+                </div>
+            </div>
+            <div class="hero-phone">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-screen active" id="screen1">
+                            <div class="app-header">
+                                <h3>Su Takip</h3>
+                                <div class="water-level">
+                                    <div class="water-fill" style="height: 65%"></div>
+                                    <span class="level-text">1.6L / 2.5L</span>
+                                </div>
+                            </div>
+                            <div class="quick-add">
+                                <button class="add-btn">250ml</button>
+                                <button class="add-btn">500ml</button>
+                                <button class="add-btn">750ml</button>
+                            </div>
+                        </div>
+                        <div class="app-screen" id="screen2">
+                            <div class="stats-screen">
+                                <h3>İstatistikler</h3>
+                                <div class="chart-placeholder"></div>
+                                <div class="stats-info">
+                                    <div class="stat-item">
+                                        <span>Bu Hafta</span>
+                                        <span>16.8L</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span>Bu Ay</span>
+                                        <span>68.2L</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Neden Su Takip?</h2>
+                <p>Sağlıklı yaşam için ihtiyacınız olan tüm özellikler</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Hızlı ve Kolay Takip</h3>
+                    <p>Tek dokunuşla su alımınızı kaydedin. 250ml, 500ml veya özel miktarlar.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Kişiselleştirilmiş Hedefler</h3>
+                    <p>Yaş, kilo, boy ve aktivite seviyenize göre otomatik hesaplanan günlük hedefler.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Kapsamlı İstatistikler</h3>
+                    <p>Günlük, haftalık ve aylık su tüketim grafiklerinizi görüntüleyin.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Akıllı Hatırlatmalar</h3>
+                    <p>Kişiselleştirilmiş bildirimlerle su içmeyi unutmayın.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Firebase Güvenliği</h3>
+                    <p>Verileriniz Google Firebase ile güvenle saklanır ve senkronize edilir.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Modern Arayüz</h3>
+                    <p>Material 3 tasarım dili ile kullanıcı dostu ve şık arayüz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <div class="section-header">
+                <h2>Uygulamayı Keşfedin</h2>
+                <p>Su Takip uygulamasının tüm özelliklerini görün</p>
+            </div>
+            <div class="screenshots-carousel">
+                <div class="carousel-container">
+                    <div class="screenshot-item active">
+                        <div class="screenshot-phone">
+                            <div class="screenshot-content">
+                                <h4>Ana Ekran</h4>
+                                <p>Günlük su takibinizi kolayca yapın</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-item">
+                        <div class="screenshot-phone">
+                            <div class="screenshot-content">
+                                <h4>İstatistikler</h4>
+                                <p>Detaylı grafikler ve analizler</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screenshot-item">
+                        <div class="screenshot-phone">
+                            <div class="screenshot-content">
+                                <h4>Profil Ayarları</h4>
+                                <p>Kişisel bilgilerinizi yönetin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Rakamlarla Su Takip</h2>
+                <p>Binlerce kullanıcının tercihi</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">İndirme</div>
+                    <div class="stat-suffix">+</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number" data-target="2.1">0</div>
+                    <div class="stat-label">Takip Edilen Su</div>
+                    <div class="stat-suffix">M+ Litre</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number" data-target="4.8">0</div>
+                    <div class="stat-label">Kullanıcı Puanı</div>
+                    <div class="stat-suffix">★</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">Memnuniyet</div>
+                    <div class="stat-suffix">%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <h2>Hemen İndirin</h2>
+                <p>Sağlıklı yaşama ilk adımı atın</p>
+                <div class="download-buttons">
+                    <a href="#" class="download-btn app-store">
+                        <i class="fab fa-apple"></i>
+                        <div>
+                            <span>Download on the</span>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="download-btn google-play">
+                        <i class="fab fa-google-play"></i>
+                        <div>
+                            <span>Get it on</span>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+                <div class="qr-code">
+                    <div class="qr-placeholder">
+                        <i class="fas fa-qrcode"></i>
+                        <p>QR Kod ile İndir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bizimle İletişime Geçin</h2>
+                <p>Sorularınız için buradayız</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-posta</h4>
+                            <p>sutakip@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-share-alt"></i>
+                        <div>
+                            <h4>Sosyal Medya</h4>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Adınız" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="E-posta Adresiniz" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Mesajınız" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-tint"></i>
+                    <span>Su Takip</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Gizlilik Politikası</a>
+                    <a href="#">Kullanım Şartları</a>
+                    <a href="#">Destek</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Su Takip. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
