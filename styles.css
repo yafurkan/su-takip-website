@@ -1026,16 +1026,27 @@ body {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 40px;
+        gap: 30px;
+        padding: 20px;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+        opacity: 0.95;
+        line-height: 1.5;
     }
     
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
     
     .phone-mockup {
@@ -1077,8 +1088,32 @@ body {
 }
 
 @media (max-width: 480px) {
+    .hero-container {
+        padding: 15px;
+        gap: 25px;
+    }
+    
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        opacity: 0.95;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+    
+    .hero-buttons {
+        gap: 12px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
     }
     
     .section-header h2 {
