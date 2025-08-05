@@ -3,7 +3,7 @@
 Modern ve responsive su takip uygulaması web sitesi.
 
 ## 🚀 Canlı Demo
-[Web sitesini görüntüle](https://your-domain.com)
+[Web sitesini görüntüle](https://suuapp.com)
 
 ## 📋 Özellikler
 - Responsive tasarım
