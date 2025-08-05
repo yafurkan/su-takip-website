@@ -653,6 +653,49 @@ body {
     border-radius: 25px;
     padding: 15px;
     box-shadow: var(--shadow-hover);
+    position: relative;
+    overflow: hidden;
+}
+
+.screenshot-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.screenshot-phone:hover .screenshot-image {
+    transform: scale(1.02);
+}
+
+.screenshot-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px 20px;
+    border-radius: 0 0 15px 15px;
+    transition: opacity 0.3s ease;
+}
+
+.screenshot-phone:hover .screenshot-overlay {
+    opacity: 0.9;
+}
+
+.screenshot-overlay h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.screenshot-overlay p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
 }
 
 .screenshot-content {
@@ -1375,6 +1418,19 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     
+    .screenshot-phone {
+        width: 200px;
+        height: 360px;
+    }
+    
+    .screenshots-carousel {
+        max-width: 600px;
+    }
+    
+    .carousel-container {
+        height: 400px;
+    }
+    
     .download-buttons {
         flex-direction: column;
         align-items: center;
@@ -1509,6 +1565,31 @@ body {
     
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .screenshot-phone {
+        width: 180px;
+        height: 320px;
+    }
+    
+    .screenshots-carousel {
+        max-width: 400px;
+    }
+    
+    .carousel-container {
+        height: 350px;
+    }
+    
+    .screenshot-overlay {
+        padding: 20px 15px 15px;
+    }
+    
+    .screenshot-overlay h4 {
+        font-size: 1rem;
+    }
+    
+    .screenshot-overlay p {
+        font-size: 0.8rem;
     }
     
     .stat-number {
