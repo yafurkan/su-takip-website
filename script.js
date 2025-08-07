@@ -684,19 +684,19 @@ function validateStep(step) {
         // Validate age, weight, height
         if (!ageInput.value || ageInput.value < 1 || ageInput.value > 120) {
             showError('Lütfen geçerli bir yaş girin (1-120)');
-            ageInput.focus();
+            focusInputWithDelay(ageInput);
             return false;
         }
         
         if (!weightInput.value || weightInput.value < 1 || weightInput.value > 300) {
             showError('Lütfen geçerli bir kilo girin (1-300 kg)');
-            weightInput.focus();
+            focusInputWithDelay(weightInput);
             return false;
         }
         
         if (!heightInput.value || heightInput.value < 50 || heightInput.value > 250) {
             showError('Lütfen geçerli bir boy girin (50-250 cm)');
-            heightInput.focus();
+            focusInputWithDelay(heightInput);
             return false;
         }
     }
@@ -715,12 +715,37 @@ function validateStep(step) {
         
         if (!activitySelect.value) {
             showError('Lütfen aktivite seviyenizi seçin');
-            activitySelect.focus();
+            focusInputWithDelay(activitySelect);
             return false;
         }
     }
     
     return true;
+}
+
+// Helper function for mobile input focus
+function focusInputWithDelay(input) {
+    setTimeout(() => {
+        if (input) {
+            input.focus();
+            input.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center',
+                inline: 'center' 
+            });
+            
+            // Add visual highlight for mobile
+            input.style.transform = 'scale(1.05)';
+            input.style.borderColor = '#ff5252';
+            input.style.boxShadow = '0 0 0 3px rgba(255, 82, 82, 0.3)';
+            
+            setTimeout(() => {
+                input.style.transform = '';
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+            }, 2000);
+        }
+    }, 300);
 }
 
 function collectStepData(step) {
@@ -1212,20 +1237,62 @@ function improveTouchScrolling() {
         `;
     }
     
-    // Prevent zoom on double tap for form inputs
+    // Fix mobile input issues
     const inputs = document.querySelectorAll('input, select');
-    inputs.forEach(input => {
+    inputs.forEach((input, index) => {
+        // Remove zoom prevention that might block touching
+        input.removeAttribute('data-last-touch');
+        
+        // Ensure inputs are touchable
+        input.style.pointerEvents = 'auto';
+        input.style.touchAction = 'manipulation';
+        input.style.position = 'relative';
+        input.style.zIndex = '10';
+        
+        // Add touch events for better mobile interaction
         input.addEventListener('touchstart', function(e) {
-            // Prevent double-tap zoom
-            const now = new Date().getTime();
-            const lastTouch = this.getAttribute('data-last-touch') || 0;
-            
-            if (now - lastTouch < 500) {
-                e.preventDefault();
+            // Force focus on touch
+            e.stopPropagation();
+            this.focus();
+        }, { passive: false });
+        
+        input.addEventListener('touchend', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+        
+        // Special handling for iOS
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            input.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.focus();
+            });
+        }
+    });
+    
+    // Fix label clicking on mobile
+    const labels = document.querySelectorAll('label');
+    labels.forEach(label => {
+        label.addEventListener('touchstart', function(e) {
+            const forAttr = this.getAttribute('for');
+            if (forAttr) {
+                const input = document.getElementById(forAttr);
+                if (input) {
+                    e.preventDefault();
+                    setTimeout(() => {
+                        input.focus();
+                        input.click();
+                    }, 50);
+                }
             }
-            
-            this.setAttribute('data-last-touch', now);
-        });
+        }, { passive: false });
+    });
+    
+    // Ensure form doesn't interfere with input touching
+    const formSteps = document.querySelectorAll('.form-step');
+    formSteps.forEach(step => {
+        step.style.pointerEvents = 'auto';
+        step.style.position = 'relative';
+        step.style.zIndex = '5';
     });
 }
 
