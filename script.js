@@ -838,18 +838,102 @@ function showResult(result) {
     // Update phone preview target
     document.getElementById('targetAmount').textContent = result.amount + 'L';
     
-    // Animate water fill
+    // Mobile-specific celebration animation
+    if (window.innerWidth <= 768) {
+        addMobileCelebration();
+    }
+    
+    // Animate water fill with mobile optimization
     setTimeout(() => {
         const waterFill = document.getElementById('waterFill');
-        waterFill.style.height = '80%';
+        if (waterFill) {
+            waterFill.style.height = '80%';
+            waterFill.style.animation = 'mobileWaterFill 2s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
         
         // Animate number count-up
         animateCountUp(result.amount);
+        
+        // Mobile haptic feedback for success
+        if ('vibrate' in navigator) {
+            navigator.vibrate([50, 30, 50, 30, 100]);
+        }
     }, 500);
     
     // Update progress ring in phone preview
     const progressPercentage = Math.round((1.6 / result.amount) * 100);
     updateProgressRing(progressPercentage);
+}
+
+function addMobileCelebration() {
+    // Create floating celebration elements
+    const celebrationContainer = document.createElement('div');
+    celebrationContainer.className = 'mobile-celebration';
+    celebrationContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1000;
+    `;
+    
+    document.body.appendChild(celebrationContainer);
+    
+    // Create water drops celebration
+    for (let i = 0; i < 8; i++) {
+        const drop = document.createElement('div');
+        drop.style.cssText = `
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #00bcd4, #4fc3f7);
+            border-radius: 0 50% 50% 50%;
+            transform: rotate(-45deg);
+            left: ${Math.random() * 100}%;
+            top: -20px;
+            animation: mobileCelebrationDrop ${2 + Math.random() * 2}s ease-out forwards;
+            animation-delay: ${i * 0.2}s;
+        `;
+        celebrationContainer.appendChild(drop);
+    }
+    
+    // Add celebration styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes mobileCelebrationDrop {
+            0% {
+                transform: rotate(-45deg) translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(-45deg) translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes mobileWaterFill {
+            0% {
+                height: 0%;
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                height: 80%;
+                transform: scale(1);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Remove celebration after animation
+    setTimeout(() => {
+        celebrationContainer.remove();
+        style.remove();
+    }, 6000);
 }
 
 function animateCountUp(targetAmount) {
@@ -1011,6 +1095,270 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    
+    // Mobile-specific enhancements
+    if (window.innerWidth <= 768) {
+        initializeMobileEnhancements();
+    }
+    
+    // Responsive adjustments on resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            initializeMobileEnhancements();
+        }
+    });
 });
+
+// Mobile-specific functions
+function initializeMobileEnhancements() {
+    // Add touch ripple effects
+    addTouchRippleEffects();
+    
+    // Enhanced mobile animations
+    addMobileAnimations();
+    
+    // Improve touch scrolling
+    improveTouchScrolling();
+    
+    // Add mobile-specific gestures
+    addMobileGestures();
+}
+
+function addTouchRippleEffects() {
+    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+    
+    buttons.forEach(button => {
+        button.addEventListener('touchstart', function(e) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.touches[0].clientX - rect.left - size / 2;
+            const y = e.touches[0].clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: mobileRipple 0.6s linear;
+                pointer-events: none;
+            `;
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+    
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes mobileRipple {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function addMobileAnimations() {
+    // Enhanced step transitions for mobile
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'mobileSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Observe form groups
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach(group => observer.observe(group));
+    
+    // Add stagger animation to form elements
+    const inputs = document.querySelectorAll('.form-input, .form-select');
+    inputs.forEach((input, index) => {
+        input.addEventListener('focus', function() {
+            this.style.animation = `mobileFocusBounce 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)`;
+            this.style.animationDelay = `${index * 0.05}s`;
+        });
+    });
+    
+    // Gender option animations
+    const genderOptions = document.querySelectorAll('.gender-option');
+    genderOptions.forEach((option, index) => {
+        option.addEventListener('touchstart', function() {
+            this.style.animation = `mobileGenderSelect 0.4s cubic-bezier(0.4, 0, 0.2, 1)`;
+            this.style.animationDelay = `${index * 0.1}s`;
+        });
+    });
+}
+
+function improveTouchScrolling() {
+    // Smooth scrolling for mobile
+    const calculatorSection = document.querySelector('.water-calculator');
+    if (calculatorSection) {
+        calculatorSection.style.cssText += `
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        `;
+    }
+    
+    // Prevent zoom on double tap for form inputs
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('touchstart', function(e) {
+            // Prevent double-tap zoom
+            const now = new Date().getTime();
+            const lastTouch = this.getAttribute('data-last-touch') || 0;
+            
+            if (now - lastTouch < 500) {
+                e.preventDefault();
+            }
+            
+            this.setAttribute('data-last-touch', now);
+        });
+    });
+}
+
+function addMobileGestures() {
+    let startX = 0;
+    let startY = 0;
+    
+    const calculatorForm = document.getElementById('calculatorForm');
+    if (!calculatorForm) return;
+    
+    // Touch swipe gestures for step navigation
+    calculatorForm.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    });
+    
+    calculatorForm.addEventListener('touchend', function(e) {
+        if (!startX || !startY) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+        
+        // Only trigger if horizontal swipe is more significant than vertical
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (Math.abs(diffX) > 50) { // Minimum swipe distance
+                if (diffX > 0 && currentStep < 3) {
+                    // Swipe left - next step
+                    nextStep();
+                } else if (diffX < 0 && currentStep > 1) {
+                    // Swipe right - previous step
+                    prevStep();
+                }
+            }
+        }
+        
+        startX = 0;
+        startY = 0;
+    });
+}
+
+// Enhanced mobile validation with haptic feedback
+function showError(message) {
+    // Create or update error message
+    let errorEl = document.querySelector('.error-message');
+    
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'error-message';
+        errorEl.style.cssText = `
+            background: rgba(255, 82, 82, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            animation: mobileErrorSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(255, 82, 82, 0.3);
+        `;
+        
+        const currentStep = document.querySelector('.form-step.active');
+        currentStep.insertBefore(errorEl, currentStep.firstChild);
+    }
+    
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+    
+    // Mobile haptic feedback
+    if ('vibrate' in navigator) {
+        navigator.vibrate([100, 50, 100]);
+    }
+    
+    // Enhanced mobile shake animation
+    const activeStep = document.querySelector('.form-step.active');
+    activeStep.style.animation = 'mobileShakeError 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    
+    // Auto hide after 4 seconds
+    setTimeout(() => {
+        if (errorEl) {
+            errorEl.style.animation = 'mobileErrorSlideOut 0.3s ease-in-out';
+            setTimeout(() => {
+                errorEl.style.display = 'none';
+            }, 300);
+        }
+    }, 4000);
+    
+    // Add mobile-specific error animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes mobileErrorSlide {
+            0% {
+                transform: translateY(-20px) scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes mobileErrorSlideOut {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20px) scale(0.9);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes mobileShakeError {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        @keyframes mobileFocusBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes mobileGenderSelect {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 console.log('Su Takip website loaded successfully! 💧');
