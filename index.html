@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Su Takip - Sağlıklı Yaşamın Anahtarı</title>
+    <meta name="description" content="Günlük su ihtiyacınızı takip edin, sağlıklı kalın. Su Takip uygulaması ile kişiselleştirilmiş hedefler ve akıllı hatırlatmalar.">
+    
+    <!-- Otomatik yönlendirme -->
+    <meta http-equiv="refresh" content="0; url=hosgeldiniz.html">
+    <link rel="canonical" href="https://suuapp.com/hosgeldiniz">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .redirect-container {
+            max-width: 400px;
+            padding: 40px;
+        }
+        
+        .water-drop {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .redirect-link {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .redirect-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="water-drop">💧</div>
+        <h1>Su Takip'e Hoş Geldiniz</h1>
+        <p>Sağlıklı yaşamın anahtarı burada!</p>
+        <p>Otomatik olarak yönlendiriliyorsunuz...</p>
+        <a href="hosgeldiniz.html" class="redirect-link">Devam Et</a>
+    </div>
+    
+    <script>
+        // JavaScript ile de yönlendirme yap (çifte güvence)
+        setTimeout(function() {
+            window.location.href = 'hosgeldiniz.html';
+        }, 1000);
+    </script>
+</body>
+</html>
