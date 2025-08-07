@@ -633,4 +633,384 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Water Calculator Functions
+let currentStep = 1;
+let calculatorData = {};
+
+function nextStep() {
+    // Validate current step
+    if (!validateStep(currentStep)) {
+        return;
+    }
+    
+    // Collect data from current step
+    collectStepData(currentStep);
+    
+    // Move to next step
+    if (currentStep < 3) {
+        const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+        const nextStepEl = document.querySelector(`.form-step[data-step="${currentStep + 1}"]`);
+        
+        currentStepEl.classList.remove('active');
+        nextStepEl.classList.add('active');
+        
+        currentStep++;
+        
+        // Update phone preview
+        updatePhonePreview();
+    }
+}
+
+function prevStep() {
+    if (currentStep > 1) {
+        const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+        const prevStepEl = document.querySelector(`.form-step[data-step="${currentStep - 1}"]`);
+        
+        currentStepEl.classList.remove('active');
+        prevStepEl.classList.add('active');
+        
+        currentStep--;
+    }
+}
+
+function validateStep(step) {
+    const ageInput = document.getElementById('age');
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const genderInputs = document.querySelectorAll('input[name="gender"]');
+    const activitySelect = document.getElementById('activity');
+    
+    if (step === 1) {
+        // Validate age, weight, height
+        if (!ageInput.value || ageInput.value < 1 || ageInput.value > 120) {
+            showError('Lütfen geçerli bir yaş girin (1-120)');
+            ageInput.focus();
+            return false;
+        }
+        
+        if (!weightInput.value || weightInput.value < 1 || weightInput.value > 300) {
+            showError('Lütfen geçerli bir kilo girin (1-300 kg)');
+            weightInput.focus();
+            return false;
+        }
+        
+        if (!heightInput.value || heightInput.value < 50 || heightInput.value > 250) {
+            showError('Lütfen geçerli bir boy girin (50-250 cm)');
+            heightInput.focus();
+            return false;
+        }
+    }
+    
+    if (step === 2) {
+        // Validate gender and activity
+        let genderSelected = false;
+        genderInputs.forEach(input => {
+            if (input.checked) genderSelected = true;
+        });
+        
+        if (!genderSelected) {
+            showError('Lütfen cinsiyetinizi seçin');
+            return false;
+        }
+        
+        if (!activitySelect.value) {
+            showError('Lütfen aktivite seviyenizi seçin');
+            activitySelect.focus();
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+function collectStepData(step) {
+    if (step === 1) {
+        calculatorData.age = parseInt(document.getElementById('age').value);
+        calculatorData.weight = parseFloat(document.getElementById('weight').value);
+        calculatorData.height = parseInt(document.getElementById('height').value);
+    }
+    
+    if (step === 2) {
+        const genderInputs = document.querySelectorAll('input[name="gender"]');
+        genderInputs.forEach(input => {
+            if (input.checked) calculatorData.gender = input.value;
+        });
+        calculatorData.activity = document.getElementById('activity').value;
+    }
+}
+
+function calculateWater() {
+    // Validate step 2
+    if (!validateStep(2)) {
+        return;
+    }
+    
+    // Collect final data
+    collectStepData(2);
+    
+    // Calculate water intake
+    const result = calculateDailyWaterIntake(calculatorData);
+    
+    // Show result
+    showResult(result);
+    
+    // Move to result step
+    const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+    const resultStepEl = document.querySelector(`.form-step[data-step="3"]`);
+    
+    currentStepEl.classList.remove('active');
+    resultStepEl.classList.add('active');
+    
+    currentStep = 3;
+}
+
+function calculateDailyWaterIntake(data) {
+    const { age, weight, height, gender, activity } = data;
+    
+    // Base calculation: 35ml per kg body weight
+    let baseWater = weight * 35;
+    
+    // Gender adjustment
+    if (gender === 'male') {
+        baseWater *= 1.05; // Men need slightly more
+    } else {
+        baseWater *= 1.0; // Base for women
+    }
+    
+    // Age adjustment
+    if (age < 18) {
+        baseWater *= 1.1; // Growing teens need more
+    } else if (age > 65) {
+        baseWater *= 0.95; // Elderly need slightly less
+    }
+    
+    // Activity level adjustment
+    const activityMultipliers = {
+        sedentary: 1.0,
+        light: 1.1,
+        moderate: 1.3,
+        active: 1.5,
+        extra: 1.7
+    };
+    
+    baseWater *= activityMultipliers[activity] || 1.0;
+    
+    // Convert to liters and round to 1 decimal
+    const dailyLiters = Math.round((baseWater / 1000) * 10) / 10;
+    
+    // Ensure reasonable range (1.5L - 5.0L)
+    const finalAmount = Math.max(1.5, Math.min(5.0, dailyLiters));
+    
+    return {
+        amount: finalAmount,
+        cups: Math.round(finalAmount * 4), // ~250ml per cup
+        message: getPersonalizedMessage(data, finalAmount)
+    };
+}
+
+function getPersonalizedMessage(data, amount) {
+    const { age, gender, activity, weight } = data;
+    
+    let message = `Harika! Senin için hesaplanan günlük su ihtiyacı ${amount} litre. `;
+    
+    if (activity === 'sedentary') {
+        message += "Masa başında çalıştığın için düzenli aralıklarla su içmeyi unutma! ";
+    } else if (activity === 'active' || activity === 'extra') {
+        message += "Aktif yaşam tarzın nedeniyle daha fazla su içmen gerekiyor. ";
+    }
+    
+    if (age < 25) {
+        message += "Genç yaşta sağlıklı alışkanlıklar edinmek harika! ";
+    } else if (age > 50) {
+        message += "Yaşla birlikte hidrasyon daha da önemli hale geliyor. ";
+    }
+    
+    message += "Bu hesaplama genel bir rehber - kişisel ihtiyaçların için uygulamada detaylı takip yapabilirsin!";
+    
+    return message;
+}
+
+function showResult(result) {
+    // Update result display
+    document.getElementById('dailyAmount').textContent = result.amount;
+    document.getElementById('resultMessage').textContent = result.message;
+    
+    // Update phone preview target
+    document.getElementById('targetAmount').textContent = result.amount + 'L';
+    
+    // Animate water fill
+    setTimeout(() => {
+        const waterFill = document.getElementById('waterFill');
+        waterFill.style.height = '80%';
+        
+        // Animate number count-up
+        animateCountUp(result.amount);
+    }, 500);
+    
+    // Update progress ring in phone preview
+    const progressPercentage = Math.round((1.6 / result.amount) * 100);
+    updateProgressRing(progressPercentage);
+}
+
+function animateCountUp(targetAmount) {
+    const amountEl = document.getElementById('dailyAmount');
+    const startAmount = 0;
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    function animate(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const currentAmount = startAmount + (targetAmount - startAmount) * easeOut;
+        
+        amountEl.textContent = Math.round(currentAmount * 10) / 10;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+function updateProgressRing(percentage) {
+    const progressRing = document.getElementById('previewProgress');
+    if (progressRing) {
+        const degrees = (percentage / 100) * 360;
+        progressRing.parentElement.style.background = 
+            `conic-gradient(#00bcd4 0deg, #00bcd4 ${degrees}deg, rgba(255,255,255,0.2) ${degrees}deg)`;
+        
+        const progressText = progressRing.parentElement.querySelector('.progress-text');
+        if (progressText) {
+            progressText.textContent = percentage + '%';
+        }
+    }
+}
+
+function updatePhonePreview() {
+    // Add subtle animation to phone preview when step changes
+    const phonePreview = document.querySelector('.phone-preview');
+    if (phonePreview) {
+        phonePreview.style.transform = 'scale(0.95) rotateY(5deg)';
+        setTimeout(() => {
+            phonePreview.style.transform = 'scale(1) rotateY(0deg)';
+        }, 300);
+    }
+}
+
+function restartCalculator() {
+    // Reset to step 1
+    const allSteps = document.querySelectorAll('.form-step');
+    allSteps.forEach(step => step.classList.remove('active'));
+    
+    const firstStep = document.querySelector('.form-step[data-step="1"]');
+    firstStep.classList.add('active');
+    
+    currentStep = 1;
+    calculatorData = {};
+    
+    // Clear form inputs
+    document.getElementById('age').value = '';
+    document.getElementById('weight').value = '';
+    document.getElementById('height').value = '';
+    
+    const genderInputs = document.querySelectorAll('input[name="gender"]');
+    genderInputs.forEach(input => input.checked = false);
+    
+    document.getElementById('activity').selectedIndex = 0;
+    
+    // Reset animations
+    const waterFill = document.getElementById('waterFill');
+    if (waterFill) {
+        waterFill.style.height = '0%';
+    }
+    
+    // Reset phone preview
+    updateProgressRing(65);
+    document.getElementById('targetAmount').textContent = '2.5L';
+}
+
+function showError(message) {
+    // Create or update error message
+    let errorEl = document.querySelector('.error-message');
+    
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'error-message';
+        errorEl.style.cssText = `
+            background: rgba(255, 82, 82, 0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+            animation: shake 0.5s ease-in-out;
+        `;
+        
+        const currentStep = document.querySelector('.form-step.active');
+        currentStep.insertBefore(errorEl, currentStep.firstChild);
+    }
+    
+    errorEl.textContent = message;
+    errorEl.style.display = 'block';
+    
+    // Auto hide after 4 seconds
+    setTimeout(() => {
+        if (errorEl) {
+            errorEl.style.display = 'none';
+        }
+    }, 4000);
+    
+    // Add shake animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize calculator when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Set initial state
+    currentStep = 1;
+    calculatorData = {};
+    
+    // Add input event listeners for better UX
+    const inputs = document.querySelectorAll('#calculatorForm input, #calculatorForm select');
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            // Hide error message when user starts typing
+            const errorEl = document.querySelector('.error-message');
+            if (errorEl) {
+                errorEl.style.display = 'none';
+            }
+        });
+    });
+    
+    // Add enter key support for form progression
+    document.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const activeStep = document.querySelector('.form-step.active');
+            if (activeStep) {
+                const stepNumber = parseInt(activeStep.dataset.step);
+                if (stepNumber === 1) {
+                    nextStep();
+                } else if (stepNumber === 2) {
+                    calculateWater();
+                } else if (stepNumber === 3) {
+                    restartCalculator();
+                }
+            }
+        }
+    });
+});
+
 console.log('Su Takip website loaded successfully! 💧');

@@ -1690,3 +1690,636 @@ body {
         font-size: 0.75rem;
     }
 }
+
+/* Water Calculator Section */
+.water-calculator {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.water-calculator::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calculator-form-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-form {
+    position: relative;
+    min-height: 400px;
+}
+
+.form-step {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.form-step.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    pointer-events: all;
+}
+
+.form-step h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+.gender-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.gender-options input[type="radio"] {
+    display: none;
+}
+
+.gender-label {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.gender-label:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.gender-options input[type="radio"]:checked + .gender-label {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.gender-label i {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.next-btn,
+.calculate-btn,
+.restart-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(45deg, #ff6b6b, #ffa500);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+    margin-top: 20px;
+}
+
+.next-btn:hover,
+.calculate-btn:hover,
+.restart-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+}
+
+.step-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.prev-btn {
+    flex: 1;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.prev-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.calculate-btn {
+    flex: 2;
+    margin-top: 0;
+}
+
+/* Result Animation */
+.result-container {
+    text-align: center;
+    color: white;
+}
+
+.water-animation {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.water-glass {
+    width: 120px;
+    height: 180px;
+    border: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 0 0 60px 60px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.water-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(45deg, #00bcd4, #2196f3);
+    border-radius: 0 0 60px 60px;
+    animation: fillWater 2s ease-out;
+    height: 0;
+}
+
+.glass-shine {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 50px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.8), transparent);
+    border-radius: 15px;
+    opacity: 0.7;
+}
+
+.water-drops {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.drop {
+    width: 8px;
+    height: 12px;
+    background: #2196f3;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    animation: dropFall 1.5s infinite;
+}
+
+.drop:nth-child(1) { left: -10px; animation-delay: 0s; }
+.drop:nth-child(2) { left: 0px; animation-delay: 0.5s; }
+.drop:nth-child(3) { left: 10px; animation-delay: 1s; }
+
+@keyframes fillWater {
+    0% { height: 0; }
+    100% { height: 80%; }
+}
+
+@keyframes dropFall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+}
+
+.result-text h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    animation: bounceIn 1s ease;
+}
+
+.daily-amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.amount-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #00bcd4;
+    animation: countUp 2s ease;
+}
+
+.amount-unit {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.result-message {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    animation: fadeIn 1s ease 0.5s both;
+}
+
+/* App Promotion */
+.app-promotion {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 1s ease 1s both;
+}
+
+.app-promotion h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffa500;
+}
+
+.app-features {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.feature-item i {
+    font-size: 1.5rem;
+    color: #00bcd4;
+}
+
+.promotion-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.download-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #4caf50, #8bc34a);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+}
+
+.download-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5);
+}
+
+/* Calculator Visual */
+.calculator-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-preview {
+    width: 280px;
+    height: 560px;
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    border-radius: 35px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.phone-preview::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+}
+
+.app-preview {
+    padding: 30px 20px;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-header h4 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.progress-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#00bcd4 0deg, #00bcd4 234deg, rgba(255,255,255,0.2) 234deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.progress-ring::before {
+    content: '';
+    width: 90px;
+    height: 90px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+}
+
+.progress-text {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.preview-stats {
+    display: flex;
+    gap: 40px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #00bcd4;
+}
+
+/* Animations */
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes countUp {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-20px, -20px) rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .calculator-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .water-calculator {
+        padding: 60px 0;
+    }
+    
+    .calculator-form-section {
+        padding: 30px 20px;
+    }
+    
+    .phone-preview {
+        width: 240px;
+        height: 480px;
+    }
+    
+    .amount-number {
+        font-size: 3rem;
+    }
+    
+    .app-features {
+        gap: 10px;
+    }
+    
+    .feature-item {
+        font-size: 0.8rem;
+    }
+    
+    .feature-item i {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 668px) {
+    .calculator-form-section {
+        margin: 0 10px;
+        padding: 20px 15px;
+    }
+    
+    .form-step h3 {
+        font-size: 1.5rem;
+    }
+    
+    .gender-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .step-buttons {
+        flex-direction: column;
+    }
+    
+    .daily-amount {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .amount-number {
+        font-size: 2.5rem;
+    }
+    
+    .app-features {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .preview-stats {
+        gap: 20px;
+    }
+    
+    .phone-preview {
+        width: 200px;
+        height: 400px;
+    }
+    
+    .progress-ring {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .progress-ring::before {
+        width: 75px;
+        height: 75px;
+    }
+}

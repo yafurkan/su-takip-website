@@ -193,6 +193,158 @@
         </div>
     </section>
 
+    <!-- Water Calculator Section -->
+    <section id="water-calculator" class="water-calculator">
+        <div class="container">
+            <div class="section-header">
+                <h2>Günlük Su İhtiyacını Hesapla</h2>
+                <p>Kişisel bilgilerine göre günlük kaç litre su içmen gerektiğini öğren</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-form-section">
+                    <div class="calculator-form" id="calculatorForm">
+                        <div class="form-step active" data-step="1">
+                            <h3>Kişisel Bilgilerin</h3>
+                            <div class="form-group">
+                                <label for="age">Yaş</label>
+                                <input type="number" id="age" min="1" max="120" placeholder="Yaşını gir">
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">Kilo (kg)</label>
+                                <input type="number" id="weight" min="1" max="300" placeholder="Kilonu gir">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Boy (cm)</label>
+                                <input type="number" id="height" min="50" max="250" placeholder="Boyunu gir">
+                            </div>
+                            <button type="button" class="next-btn" onclick="nextStep()">Devam Et</button>
+                        </div>
+
+                        <div class="form-step" data-step="2">
+                            <h3>Cinsiyet ve Aktivite</h3>
+                            <div class="form-group">
+                                <label>Cinsiyet</label>
+                                <div class="gender-options">
+                                    <input type="radio" id="male" name="gender" value="male">
+                                    <label for="male" class="gender-label">
+                                        <i class="fas fa-mars"></i>
+                                        Erkek
+                                    </label>
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female" class="gender-label">
+                                        <i class="fas fa-venus"></i>
+                                        Kadın
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="activity">Aktivite Seviyesi</label>
+                                <select id="activity">
+                                    <option value="sedentary">Hareketsiz (Masa işi)</option>
+                                    <option value="light">Az aktif (Hafif egzersiz)</option>
+                                    <option value="moderate">Orta aktif (Düzenli spor)</option>
+                                    <option value="active">Çok aktif (Yoğun antrenman)</option>
+                                    <option value="extra">Süper aktif (Profesyonel sporcu)</option>
+                                </select>
+                            </div>
+                            <div class="step-buttons">
+                                <button type="button" class="prev-btn" onclick="prevStep()">Geri</button>
+                                <button type="button" class="calculate-btn" onclick="calculateWater()">Hesapla</button>
+                            </div>
+                        </div>
+
+                        <div class="form-step" data-step="3">
+                            <div class="result-container">
+                                <div class="water-animation">
+                                    <div class="water-glass">
+                                        <div class="water-fill" id="waterFill"></div>
+                                        <div class="glass-shine"></div>
+                                    </div>
+                                    <div class="water-drops">
+                                        <div class="drop"></div>
+                                        <div class="drop"></div>
+                                        <div class="drop"></div>
+                                    </div>
+                                </div>
+                                <div class="result-text">
+                                    <h3>🎉 Sonucun Hazır!</h3>
+                                    <div class="daily-amount">
+                                        <span class="amount-number" id="dailyAmount">2.5</span>
+                                        <span class="amount-unit">Litre/Gün</span>
+                                    </div>
+                                    <p class="result-message" id="resultMessage">
+                                        Harika! Günlük su ihtiyacın hesaplandı.
+                                    </p>
+                                </div>
+                                <div class="app-promotion">
+                                    <div class="promotion-content">
+                                        <h4>🚀 Daha Fazlası İçin Uygulamayı İndir!</h4>
+                                        <div class="app-features">
+                                            <div class="feature-item">
+                                                <i class="fas fa-chart-line"></i>
+                                                <span>Detaylı istatistikler</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <i class="fas fa-bell"></i>
+                                                <span>Akıllı hatırlatmalar</span>
+                                            </div>
+                                            <div class="feature-item">
+                                                <i class="fas fa-trophy"></i>
+                                                <span>Rozet sistemi</span>
+                                            </div>
+                                        </div>
+                                        <p class="promotion-text">
+                                            Su Takip uygulaması ile günlük hedefinizi takip edin, 
+                                            grafiklerinizi görün ve sağlıklı alışkanlıklar kazanın! 
+                                            Bu hesaplama sadece başlangıç - gerçek takip deneyimi uygulamada!
+                                        </p>
+                                        <a href="#download" class="download-cta">
+                                            <i class="fab fa-google-play"></i>
+                                            Ücretsiz İndir
+                                        </a>
+                                    </div>
+                                </div>
+                                <button type="button" class="restart-btn" onclick="restartCalculator()">
+                                    <i class="fas fa-redo"></i>
+                                    Tekrar Hesapla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculator-visual">
+                    <div class="phone-preview">
+                        <div class="phone-screen">
+                            <div class="app-preview" id="appPreview">
+                                <div class="preview-header">
+                                    <h4>Su Takip</h4>
+                                    <div class="preview-progress">
+                                        <div class="progress-ring">
+                                            <div class="progress-fill" id="previewProgress"></div>
+                                            <span class="progress-text">65%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="preview-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Bugün</span>
+                                        <span class="stat-value">1.6L</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Hedef</span>
+                                        <span class="stat-value" id="targetAmount">2.5L</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Screenshots Section -->
     <section id="screenshots" class="screenshots">
         <div class="container">
