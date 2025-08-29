@@ -122,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const appStoreBtn = document.getElementById('appStoreBtn');
     const heroAppStoreBtn = document.getElementById('heroAppStoreBtn');
     
+    // Instagram links
+    const instagramLinks = document.querySelectorAll('.instagram-link');
+    
     if (closeIosPopup) {
         closeIosPopup.addEventListener('click', hideIOSPopup);
     }
@@ -171,6 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
         heroAppStoreBtn.addEventListener('click', handleAppStoreClick);
     }
     
+    // Instagram native app opening functionality
+    instagramLinks.forEach(link => {
+        link.addEventListener('click', handleInstagramClick);
+    });
+    
     // Close popup when clicking on overlay
     if (iosPopupOverlay) {
         iosPopupOverlay.addEventListener('click', (e) => {
@@ -187,6 +195,108 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Function to handle Instagram link clicks
+function handleInstagramClick(e) {
+    e.preventDefault();
+    
+    const username = e.currentTarget.getAttribute('data-instagram');
+    const webUrl = `https://www.instagram.com/${username}/`;
+    const appUrl = `instagram://user?username=${username}`;
+    
+    // Detect if it's mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Try to open Instagram app first
+        const startTime = Date.now();
+        
+        // Create a hidden iframe to attempt app opening
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = appUrl;
+        document.body.appendChild(iframe);
+        
+        // Set a timeout to check if the app opened
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+            
+            // If the app didn't open (user returned quickly), open web version
+            const timeElapsed = Date.now() - startTime;
+            if (timeElapsed < 2000) {
+                // App probably not installed or didn't open, fallback to web
+                window.open(webUrl, '_blank', 'noopener,noreferrer');
+            }
+        }, 1500);
+        
+        // Also try with window.location as backup
+        setTimeout(() => {
+            try {
+                window.location = appUrl;
+            } catch (e) {
+                // If error, open web version
+                window.open(webUrl, '_blank', 'noopener,noreferrer');
+            }
+        }, 100);
+        
+    } else {
+        // Desktop - just open web version
+        window.open(webUrl, '_blank', 'noopener,noreferrer');
+    }
+    
+    // Show a nice feedback message
+    showInstagramFeedback();
+}
+
+// Function to show Instagram opening feedback
+function showInstagramFeedback() {
+    const notification = document.createElement('div');
+    notification.className = 'instagram-feedback';
+    notification.innerHTML = `
+        <div class="instagram-feedback-content">
+            <div class="instagram-feedback-icon">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="instagram-feedback-text">
+                <span>🚀 Instagram'da takip etmeyi unutmayın!</span>
+            </div>
+        </div>
+    `;
+    
+    // Style the notification
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        max-width: 300px;
+        background: linear-gradient(135deg, #E4405F, #C13584);
+        color: white;
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0 8px 32px rgba(196, 53, 132, 0.3);
+        z-index: 10001;
+        transform: translateY(100px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateY(0)';
+    }, 100);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateY(100px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 400);
+    }, 3000);
+}
 
 // Function to show coming soon message for App Store
 function showIOSComingSoonMessage() {
