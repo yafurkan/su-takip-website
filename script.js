@@ -10,7 +10,162 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         loadingScreen.classList.add('hidden');
         document.body.style.overflow = 'visible';
+        
+        // Show iOS popup after loading screen disappears
+        setTimeout(() => {
+            showIOSPopup();
+        }, 1000);
     }, 2000);
+});
+
+// iOS Popup Functionality
+function showIOSPopup() {
+    const iosPopup = document.getElementById('ios-popup');
+    if (iosPopup) {
+        // Check if user has already seen the popup today
+        const lastShown = localStorage.getItem('ios-popup-last-shown');
+        const today = new Date().toDateString();
+        
+        if (lastShown !== today) {
+            iosPopup.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            
+            // Add celebration animation
+            addIOSCelebrationAnimation();
+            
+            // Save that popup was shown today
+            localStorage.setItem('ios-popup-last-shown', today);
+        }
+    }
+}
+
+function hideIOSPopup() {
+    const iosPopup = document.getElementById('ios-popup');
+    if (iosPopup) {
+        iosPopup.classList.remove('show');
+        document.body.style.overflow = 'visible';
+    }
+}
+
+function addIOSCelebrationAnimation() {
+    // Create floating iOS icons
+    const celebrationContainer = document.createElement('div');
+    celebrationContainer.className = 'ios-celebration';
+    celebrationContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+    `;
+    
+    document.body.appendChild(celebrationContainer);
+    
+    // Create multiple iOS icons
+    const icons = ['fas fa-mobile-alt', 'fab fa-apple', 'fas fa-tablet-alt', 'fas fa-watch'];
+    
+    for (let i = 0; i < 6; i++) {
+        const icon = document.createElement('div');
+        const iconClass = icons[Math.floor(Math.random() * icons.length)];
+        
+        icon.innerHTML = `<i class="${iconClass}"></i>`;
+        icon.style.cssText = `
+            position: absolute;
+            font-size: 24px;
+            color: #007AFF;
+            left: ${Math.random() * 100}%;
+            top: -50px;
+            animation: iosCelebrationFloat ${3 + Math.random() * 2}s ease-out forwards;
+            animation-delay: ${i * 0.3}s;
+        `;
+        
+        celebrationContainer.appendChild(icon);
+    }
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes iosCelebrationFloat {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Remove celebration after animation
+    setTimeout(() => {
+        celebrationContainer.remove();
+        style.remove();
+    }, 8000);
+}
+
+// Event listeners for iOS popup
+document.addEventListener('DOMContentLoaded', () => {
+    const closeIosPopup = document.getElementById('closeIosPopup');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    const notifyMeBtn = document.getElementById('notifyMeBtn');
+    const iosPopupOverlay = document.getElementById('ios-popup');
+    
+    if (closeIosPopup) {
+        closeIosPopup.addEventListener('click', hideIOSPopup);
+    }
+    
+    if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', hideIOSPopup);
+    }
+    
+    if (notifyMeBtn) {
+        notifyMeBtn.addEventListener('click', () => {
+            // Simulate notification signup
+            const originalText = notifyMeBtn.innerHTML;
+            notifyMeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Kaydediliyor...';
+            notifyMeBtn.disabled = true;
+            
+            setTimeout(() => {
+                notifyMeBtn.innerHTML = '<i class="fas fa-check"></i> Kaydedildi!';
+                notifyMeBtn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                // Show success message
+                showNotification('iOS sürümü çıktığında sizi bilgilendireceğiz! 🍎', 'success');
+                
+                // Close popup after success
+                setTimeout(() => {
+                    hideIOSPopup();
+                }, 2000);
+                
+                // Save notification preference
+                localStorage.setItem('ios-notification-signup', 'true');
+            }, 1500);
+        });
+    }
+    
+    // Close popup when clicking on overlay
+    if (iosPopupOverlay) {
+        iosPopupOverlay.addEventListener('click', (e) => {
+            if (e.target === iosPopupOverlay) {
+                hideIOSPopup();
+            }
+        });
+    }
+    
+    // Close popup with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            hideIOSPopup();
+        }
+    });
 });
 
 // Navbar Scroll Effect

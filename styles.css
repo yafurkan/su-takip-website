@@ -92,6 +92,249 @@ body {
     font-weight: 500;
 }
 
+/* iOS Popup Styles */
+.ios-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ios-popup {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    max-width: 480px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.ios-popup-overlay.show .ios-popup {
+    transform: scale(1) translateY(0);
+}
+
+.ios-popup-header {
+    position: relative;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ios-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.ios-popup-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+    transform: scale(1.1);
+}
+
+.ios-popup-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.ios-popup-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    animation: iosIconBounce 2s infinite;
+}
+
+.ios-popup-icon i {
+    font-size: 40px;
+    color: var(--white);
+}
+
+@keyframes iosIconBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.ios-popup h3 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ios-popup p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.ios-popup-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.ios-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(0, 122, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.ios-feature:hover {
+    background: rgba(0, 122, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.ios-feature i {
+    color: #007AFF;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.ios-feature span {
+    font-size: 15px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.ios-popup-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ios-popup-btn {
+    padding: 15px 25px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.ios-popup-btn.primary {
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+}
+
+.ios-popup-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+.ios-popup-btn.secondary {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+}
+
+.ios-popup-btn.secondary:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Mobile Responsive for iOS Popup */
+@media (max-width: 768px) {
+    .ios-popup {
+        max-width: 95%;
+        margin: 20px;
+    }
+    
+    .ios-popup-content {
+        padding: 25px 20px;
+    }
+    
+    .ios-popup h3 {
+        font-size: 24px;
+    }
+    
+    .ios-popup-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .ios-popup-icon i {
+        font-size: 35px;
+    }
+    
+    .ios-popup-actions {
+        gap: 10px;
+    }
+    
+    .ios-popup-btn {
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ios-popup-features {
+        gap: 12px;
+    }
+    
+    .ios-feature {
+        padding: 10px;
+    }
+    
+    .ios-feature span {
+        font-size: 14px;
+    }
+}
+
 /* Container */
 .container {
     max-width: 1200px;
