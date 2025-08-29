@@ -287,6 +287,86 @@ body {
     color: #333;
 }
 
+/* iOS Coming Soon Notification Styles */
+.ios-coming-soon-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 320px;
+    z-index: 10001;
+}
+
+.ios-notification-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: relative;
+}
+
+.ios-notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #007AFF, #0051D5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ios-notification-icon i {
+    font-size: 20px;
+    color: var(--white);
+}
+
+.ios-notification-text {
+    flex: 1;
+}
+
+.ios-notification-text h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.ios-notification-text p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.ios-notification-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #999;
+    font-size: 12px;
+}
+
+.ios-notification-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #666;
+}
+
 /* Mobile Responsive for iOS Popup */
 @media (max-width: 768px) {
     .ios-popup {

@@ -118,6 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const notifyMeBtn = document.getElementById('notifyMeBtn');
     const iosPopupOverlay = document.getElementById('ios-popup');
     
+    // App Store buttons
+    const appStoreBtn = document.getElementById('appStoreBtn');
+    const heroAppStoreBtn = document.getElementById('heroAppStoreBtn');
+    
     if (closeIosPopup) {
         closeIosPopup.addEventListener('click', hideIOSPopup);
     }
@@ -151,6 +155,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // App Store button functionality
+    function handleAppStoreClick(e) {
+        e.preventDefault();
+        
+        // Show coming soon message with iOS styling
+        showIOSComingSoonMessage();
+    }
+    
+    if (appStoreBtn) {
+        appStoreBtn.addEventListener('click', handleAppStoreClick);
+    }
+    
+    if (heroAppStoreBtn) {
+        heroAppStoreBtn.addEventListener('click', handleAppStoreClick);
+    }
+    
     // Close popup when clicking on overlay
     if (iosPopupOverlay) {
         iosPopupOverlay.addEventListener('click', (e) => {
@@ -167,6 +187,69 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Function to show coming soon message for App Store
+function showIOSComingSoonMessage() {
+    // Create iOS-style notification
+    const notification = document.createElement('div');
+    notification.className = 'ios-coming-soon-notification';
+    notification.innerHTML = `
+        <div class="ios-notification-content">
+            <div class="ios-notification-icon">
+                <i class="fab fa-apple"></i>
+            </div>
+            <div class="ios-notification-text">
+                <h4>🍎 iOS Sürümü Çok Yakında!</h4>
+                <p>App Store'da çok yakında mevcut olacak. Haberdar olmak için bildirim al!</p>
+            </div>
+            <button class="ios-notification-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Style the notification
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 320px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 10001;
+        transform: translateX(100%);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.ios-notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 400);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                notification.remove();
+            }, 400);
+        }
+    }, 5000);
+}
 
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
