@@ -461,6 +461,53 @@ body {
     line-height: 1.3;
 }
 
+/* Facebook Feedback Notification Styles */
+.facebook-feedback {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    max-width: 300px;
+    z-index: 10001;
+}
+
+.facebook-feedback-content {
+    background: linear-gradient(135deg, #1877F2, #4267B2);
+    color: white;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(24, 119, 242, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.facebook-feedback-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.facebook-feedback-icon i {
+    font-size: 18px;
+    color: white;
+}
+
+.facebook-feedback-text {
+    flex: 1;
+}
+
+.facebook-feedback-text span {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
 /* X Icon Fallback - if fa-x-twitter is not available */
 .fab.fa-x-twitter:before {
     content: "\f081"; /* Twitter icon as fallback */

@@ -128,6 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // X (Twitter) links
     const xLinks = document.querySelectorAll('.x-link');
     
+    // Facebook links
+    const facebookLinks = document.querySelectorAll('.facebook-link');
+    
     if (closeIosPopup) {
         closeIosPopup.addEventListener('click', hideIOSPopup);
     }
@@ -187,6 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', handleXClick);
     });
     
+    // Facebook native app opening functionality
+    facebookLinks.forEach(link => {
+        link.addEventListener('click', handleFacebookClick);
+    });
+    
     // Close popup when clicking on overlay
     if (iosPopupOverlay) {
         iosPopupOverlay.addEventListener('click', (e) => {
@@ -203,6 +211,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Function to handle Facebook link clicks
+function handleFacebookClick(e) {
+    e.preventDefault();
+    
+    const facebookId = e.currentTarget.getAttribute('data-facebook-id');
+    const webUrl = `https://www.facebook.com/people/SuuTakip/${facebookId}/`;
+    const appUrl = `fb://profile/${facebookId}`; // Facebook app deep link
+    
+    // Detect if it's mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Try to open Facebook app first
+        const startTime = Date.now();
+        
+        // Create a hidden iframe to attempt app opening
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = appUrl;
+        document.body.appendChild(iframe);
+        
+        // Set a timeout to check if the app opened
+        setTimeout(() => {
+            document.body.removeChild(iframe);
+            
+            // If the app didn't open (user returned quickly), open web version
+            const timeElapsed = Date.now() - startTime;
+            if (timeElapsed < 2000) {
+                // App probably not installed or didn't open, fallback to web
+                window.open(webUrl, '_blank', 'noopener,noreferrer');
+            }
+        }, 1500);
+        
+        // Also try with window.location as backup
+        setTimeout(() => {
+            try {
+                window.location = appUrl;
+            } catch (e) {
+                // If error, open web version
+                window.open(webUrl, '_blank', 'noopener,noreferrer');
+            }
+        }, 100);
+        
+    } else {
+        // Desktop - just open web version
+        window.open(webUrl, '_blank', 'noopener,noreferrer');
+    }
+    
+    // Show a nice feedback message
+    showFacebookFeedback();
+}
 
 // Function to handle X (Twitter) link clicks
 function handleXClick(e) {
@@ -1884,6 +1944,55 @@ function showError(message) {
         }
     `;
     document.head.appendChild(style);
+}
+
+function showFacebookFeedback() {
+    const notification = document.createElement('div');
+    notification.className = 'facebook-feedback';
+    notification.innerHTML = `
+        <div class="facebook-feedback-content">
+            <div class="facebook-feedback-icon">
+                <i class="fab fa-facebook"></i>
+            </div>
+            <div class="facebook-feedback-text">
+                <span>🚀 Facebook'ta takip etmeyi unutmayın!</span>
+            </div>
+        </div>
+    `;
+    
+    // Style the notification
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        max-width: 300px;
+        background: linear-gradient(135deg, #1877F2, #4267B2);
+        color: white;
+        border-radius: 16px;
+        padding: 15px;
+        box-shadow: 0 8px 32px rgba(24, 119, 242, 0.3);
+        z-index: 10001;
+        transform: translateY(-100px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateY(0)';
+    }, 100);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateY(-100px)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 400);
+    }, 3000);
 }
 
 console.log('Su Takip website loaded successfully! 💧');
