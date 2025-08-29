@@ -22,6 +22,7 @@
     <meta property="og:image" content="https://suuapp.com/assets/og-image.jpg">
     
     <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     
     <!-- Canonical URL -->
@@ -31,8 +32,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID'); // Replace with your actual GA ID
+    </script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Su Takip",
+        "description": "Günlük su ihtiyacınızı takip edin, sağlıklı kalın. Su Takip uygulaması ile kişiselleştirilmiş hedefler ve akıllı hatırlatmalar.",
+        "url": "https://suuapp.com",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Android",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TRY"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "2847"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Su Takip Team"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -1095,22 +1132,28 @@
                         <div>
                             <h4>Sosyal Medya</h4>
                             <div class="social-links">
-                                <a href="#"><i class="fab fa-facebook"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="https://facebook.com/sutakipapp" target="_blank" rel="noopener" title="Facebook'ta Takip Et">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="https://twitter.com/sutakipapp" target="_blank" rel="noopener" title="Twitter'da Takip Et">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://instagram.com/sutakipapp" target="_blank" rel="noopener" title="Instagram'da Takip Et">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="Adınız" required>
+                        <input type="text" name="name" placeholder="Adınız" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="E-posta Adresiniz" required>
+                        <input type="email" name="email" placeholder="E-posta Adresiniz" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Mesajınız" rows="5" required></textarea>
+                        <textarea name="message" placeholder="Mesajınız" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Gönder</button>
                 </form>
@@ -1132,10 +1175,18 @@
                     <a href="#contact">Destek</a>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://facebook.com/sutakipapp" target="_blank" rel="noopener" title="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com/sutakipapp" target="_blank" rel="noopener" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/sutakipapp" target="_blank" rel="noopener" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/sutakipapp" target="_blank" rel="noopener" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
