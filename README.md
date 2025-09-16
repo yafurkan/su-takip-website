@@ -39,3 +39,4 @@ Aşağıdaki ekran görüntülerini `assets/screenshots/` klasörüne ekleyin:
 
 ## 📝 Deployment
 Bu proje GitHub Pages ile otomatik olarak deploy edilmektedir.
+# Update
