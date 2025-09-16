@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suu - Blog & Haberler</title>
+    <meta name="description" content="Suu uygulaması ile ilgili en güncel haberler, ipuçları ve sağlık bilgileri.">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .blog-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+        
+        .blog-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .blog-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .blog-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .blog-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+        
+        .blog-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .articles-section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .articles-grid {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .article-placeholder {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+        
+        .article-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .article-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .quick-stats {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .stat-label {
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+        
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+        
+        .admin-link {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-header h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-header">
+        <div class="container">
+            <h1>💧 Suu Blog & Haberler</h1>
+            <p>Su takibi, sağlık ve uygulamaya dair güncel bilgiler</p>
+        </div>
+    </div>
+    
+    <div class="blog-nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="hosgeldiniz.html" class="blog-logo">
+                    <i class="fas fa-tint"></i>
+                    Suu
+                </a>
+                <a href="hosgeldiniz.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Ana Sayfaya Dön
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="blog-content">
+            <div class="articles-section">
+                <h2>Son Haberler & Yazılar</h2>
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Articles will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Hızlı İstatistikler</h3>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Toplam Yazı</span>
+                            <span class="stat-value" id="totalArticles">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Bu Ay</span>
+                            <span class="stat-value" id="thisMonthArticles">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Son Güncelleme</span>
+                            <span class="stat-value" id="lastUpdate">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3>Kategoriler</h3>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">📱 Uygulama</span>
+                            <span class="stat-value" id="appNews">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">💧 Sağlık</span>
+                            <span class="stat-value" id="healthNews">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">🎉 Etkinlik</span>
+                            <span class="stat-value" id="eventNews">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load articles from localStorage
+        function loadArticles() {
+            const newsList = JSON.parse(localStorage.getItem('suu_news') || '[]');
+            const articlesGrid = document.getElementById('articlesGrid');
+            
+            if (newsList.length === 0) {
+                articlesGrid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>Henüz Haber Yok</h3>
+                        <p>İlk haberlerin yayınlanması için admin panelinden haber ekleyebilirsiniz.</p>
+                        <a href="admin.html" class="admin-link">Admin Paneli</a>
+                    </div>
+                `;
+                updateSidebarStats(0, 0, null);
+                return;
+            }
+            
+            articlesGrid.innerHTML = newsList.map(article => `
+                <article class="article-card">
+                    <div class="article-image">
+                        ${article.image ? 
+                            `<img src="${article.image}" alt="${article.title}">` :
+                            '<div class="article-placeholder">📰</div>'
+                        }
+                        <div class="article-date">${formatDate(article.date)}</div>
+                    </div>
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.description}</p>
+                        <a href="#" class="read-more" onclick="openFullArticle('${article.id}')">Devamını Oku <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            `).join('');
+            
+            // Update sidebar stats
+            const thisMonth = newsList.filter(article => {
+                const articleDate = new Date(article.date);
+                const now = new Date();
+                return articleDate.getMonth() === now.getMonth() && 
+                       articleDate.getFullYear() === now.getFullYear();
+            }).length;
+            
+            const lastArticle = newsList[0];
+            updateSidebarStats(newsList.length, thisMonth, lastArticle.date);
+        }
+        
+        function updateSidebarStats(total, thisMonth, lastUpdate) {
+            document.getElementById('totalArticles').textContent = total;
+            document.getElementById('thisMonthArticles').textContent = thisMonth;
+            
+            if (lastUpdate) {
+                const date = new Date(lastUpdate);
+                document.getElementById('lastUpdate').textContent = date.toLocaleDateString('tr-TR');
+            } else {
+                document.getElementById('lastUpdate').textContent = '-';
+            }
+            
+            // Update category counts (simplified)
+            document.getElementById('appNews').textContent = Math.ceil(total * 0.6);
+            document.getElementById('healthNews').textContent = Math.ceil(total * 0.3);
+            document.getElementById('eventNews').textContent = Math.floor(total * 0.1);
+        }
+        
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) return 'Bugün';
+            if (diffDays === 2) return 'Dün';
+            if (diffDays <= 7) return `${diffDays - 1} gün önce`;
+            if (diffDays <= 30) return `${Math.ceil(diffDays / 7)} hafta önce`;
+            return date.toLocaleDateString('tr-TR');
+        }
+        
+        function openFullArticle(articleId) {
+            // This would open a full article view
+            // For now, we'll show an alert
+            alert('Tam makale görüntüleme özelliği yakında eklenecek!');
+        }
+        
+        // Load articles when page loads
+        document.addEventListener('DOMContentLoaded', loadArticles);
+        
+        // Auto refresh every 30 seconds to check for new articles
+        setInterval(loadArticles, 30000);
+    </script>
+</body>
+</html>

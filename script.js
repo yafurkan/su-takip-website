@@ -1,3 +1,132 @@
+// Admin panel access - logo click counter
+let logoClickCount = 0;
+let logoClickTimer = null;
+
+// Function to handle logo clicks for admin access
+function handleLogoClick() {
+    logoClickCount++;
+    
+    // Reset counter after 3 seconds of inactivity
+    clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => {
+        logoClickCount = 0;
+    }, 3000);
+    
+    // Show subtle feedback for clicks
+    if (logoClickCount >= 5 && logoClickCount < 10) {
+        const logo = document.querySelector('.nav-logo');
+        if (logo) {
+            logo.style.transform = 'scale(1.1)';
+            setTimeout(() => logo.style.transform = '', 200);
+        }
+    }
+    
+    // Open admin panel after 10 clicks
+    if (logoClickCount >= 10) {
+        logoClickCount = 0;
+        showAdminAccessNotification();
+    }
+}
+
+// Function to show admin access notification
+function showAdminAccessNotification() {
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        ">
+            <div style="font-size: 40px; margin-bottom: 15px;">🔐</div>
+            <h3 style="margin-bottom: 15px;">Admin Paneline Erişim</h3>
+            <p style="margin-bottom: 20px; opacity: 0.8;">Admin paneline yönlendiriliyorsunuz...</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="window.open('admin.html', '_blank'); this.parentElement.parentElement.parentElement.remove();" style="
+                    background: #667eea;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                ">Admin Panel</button>
+                <button onclick="this.parentElement.parentElement.parentElement.remove();" style="
+                    background: #dc3545;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                ">İptal</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(notification);
+    
+    // Auto remove after 10 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 10000);
+}
+
+// Function to load news from localStorage and update the site
+function loadNewsFromStorage() {
+    const newsList = JSON.parse(localStorage.getItem('suu_news') || '[]');
+    updateNewsSection(newsList);
+}
+
+// Function to update news section on the main site
+function updateNewsSection(newsList) {
+    const newsGrid = document.querySelector('.news-grid');
+    if (!newsGrid || newsList.length === 0) return;
+    
+    // Take only the first 3 most recent news
+    const recentNews = newsList.slice(0, 3);
+    
+    newsGrid.innerHTML = recentNews.map(news => `
+        <div class="news-card">
+            <div class="news-image">
+                ${news.image ? 
+                    `<img src="${news.image}" alt="${news.title}" style="width: 100%; height: 100%; object-fit: cover;">` :
+                    `<div class="news-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>`
+                }
+                <div class="news-badge">Yeni</div>
+            </div>
+            <div class="news-content">
+                <h3>${news.title}</h3>
+                <p class="news-date">${formatNewsDate(news.date)}</p>
+                <p>${news.description.length > 150 ? news.description.substring(0, 150) + '...' : news.description}</p>
+                <a href="#" class="news-link">Devamını Oku</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Function to format news date
+function formatNewsDate(dateStr) {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 1) return 'Bugün';
+    if (diffDays === 2) return 'Dün';
+    if (diffDays <= 7) return `${diffDays - 1} gün önce`;
+    return date.toLocaleDateString('tr-TR');
+}
+
 // DOM Elements
 const loadingScreen = document.getElementById('loading-screen');
 const navbar = document.getElementById('navbar');
@@ -1996,3 +2125,19 @@ function showFacebookFeedback() {
 }
 
 console.log('Su Takip website loaded successfully! 💧');
+
+// Initialize admin system and news loading
+document.addEventListener('DOMContentLoaded', function() {
+    // Add logo click event for admin access
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) {
+        navLogo.addEventListener('click', handleLogoClick);
+        navLogo.style.cursor = 'pointer';
+        navLogo.title = 'Admin erişimi için 10 kere tıklayın';
+    }
+    
+    // Load news from localStorage on page load
+    setTimeout(() => {
+        loadNewsFromStorage();
+    }, 1000);
+});
