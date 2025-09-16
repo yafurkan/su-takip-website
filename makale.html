@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makale - Suu App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .article-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .article-title {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .article-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .article-content {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #34495e;
+            text-align: justify;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .navigation {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .nav-button:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        
+        .nav-button.disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        
+        .article-not-found {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .article-not-found h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .article-container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            .article-title {
+                font-size: 2em;
+            }
+            
+            .article-content {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Suu App Logo" onclick="handleLogoClick()">
+                <h1>Suu</h1>
+                <span class="tagline">Su Takip Uygulaması</span>
+            </div>
+            <nav>
+                <a href="hosgeldiniz.html">Ana Sayfa</a>
+                <a href="blog.html">Blog</a>
+                <a href="#iletisim">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="blog.html" class="back-button">← Blog'a Dön</a>
+            
+            <div id="articleContainer" class="article-container">
+                <div class="article-not-found">
+                    <h2>Makale Bulunamadı</h2>
+                    <p>Aradığınız makale bulunamadı veya henüz yüklenmedi.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Suu App. Tüm hakları saklıdır.</p>
+            <div class="footer-links">
+                <a href="gizlilik-politikası.html">Gizlilik Politikası</a>
+                <a href="kullanim-sartlari.html">Kullanım Şartları</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function getArticleIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        function loadArticle() {
+            const articleId = getArticleIdFromURL();
+            if (!articleId) {
+                showNotFound();
+                return;
+            }
+
+            const news = JSON.parse(localStorage.getItem('suu_news') || '[]');
+            const article = news.find(item => item.id === articleId);
+            
+            if (!article) {
+                showNotFound();
+                return;
+            }
+
+            displayArticle(article, news);
+        }
+
+        function displayArticle(article, allNews) {
+            const container = document.getElementById('articleContainer');
+            const currentIndex = allNews.findIndex(item => item.id === article.id);
+            const prevArticle = currentIndex > 0 ? allNews[currentIndex - 1] : null;
+            const nextArticle = currentIndex < allNews.length - 1 ? allNews[currentIndex + 1] : null;
+
+            container.innerHTML = `
+                <div class="article-header">
+                    <h1 class="article-title">${article.title}</h1>
+                    <div class="article-meta">
+                        <span>📅 ${new Date(article.date).toLocaleDateString('tr-TR', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        })}</span>
+                    </div>
+                </div>
+                
+                ${article.image ? `<img src="${article.image}" alt="${article.title}" class="article-image">` : ''}
+                
+                <div class="article-content">
+                    ${formatContent(article.description)}
+                </div>
+                
+                <div class="navigation">
+                    ${prevArticle ? 
+                        `<a href="makale.html?id=${prevArticle.id}" class="nav-button">← ${prevArticle.title}</a>` : 
+                        '<span class="nav-button disabled">← Önceki Makale</span>'
+                    }
+                    ${nextArticle ? 
+                        `<a href="makale.html?id=${nextArticle.id}" class="nav-button">${nextArticle.title} →</a>` : 
+                        '<span class="nav-button disabled">Sonraki Makale →</span>'
+                    }
+                </div>
+            `;
+
+            // Update page title
+            document.title = `${article.title} - Suu App`;
+        }
+
+        function formatContent(content) {
+            // Convert line breaks to paragraphs
+            return content.split('\n').filter(p => p.trim()).map(p => `<p>${p.trim()}</p>`).join('');
+        }
+
+        function showNotFound() {
+            document.getElementById('articleContainer').innerHTML = `
+                <div class="article-not-found">
+                    <h2>Makale Bulunamadı</h2>
+                    <p>Aradığınız makale bulunamadı veya henüz yüklenmedi.</p>
+                    <a href="blog.html" class="back-button">Blog'a Dön</a>
+                </div>
+            `;
+        }
+
+        // Load article when page loads
+        document.addEventListener('DOMContentLoaded', loadArticle);
+    </script>
+</body>
+</html>
