@@ -3,347 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Clarity tracking code -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "tabxahhw7s");
-    </script>
-    <title>Gizlilik Politikası - Suu</title>
-    <meta name="description" content="Suu uygulaması gizlilik politikası ve kişisel veri koruma bilgileri.">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://suuapp.com/gizlilik-politikasi.html">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
+    <title>Suu - Gizlilik Politikası</title>
     <style>
-        .policy-page {
-            min-height: 100vh;
-            padding: 120px 0 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .policy-container {
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .policy-content {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
         
-        .policy-header {
+        .header {
+            background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
+            color: white;
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
         }
         
-        .policy-header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
-        .policy-header .update-date {
-            color: #7f8c8d;
-            font-size: 1rem;
+        .last-updated {
+            font-size: 14px;
+            opacity: 0.9;
         }
         
-        .policy-section {
-            margin-bottom: 30px;
+        .content {
+            padding: 40px 30px;
         }
         
-        .policy-section h2 {
-            color: #34495e;
-            font-size: 1.5rem;
+        h2 {
+            color: #2196F3;
+            margin: 30px 0 15px;
+            font-size: 24px;
+            border-bottom: 2px solid #E3F2FD;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #1976D2;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+        
+        p {
             margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 4px solid #3498db;
+            text-align: justify;
         }
         
-        .policy-section h3 {
-            color: #2c3e50;
-            font-size: 1.2rem;
-            margin: 20px 0 10px 0;
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
         }
         
-        .policy-section p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .policy-section ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .policy-section li {
-            color: #555;
-            line-height: 1.7;
+        li {
             margin-bottom: 8px;
         }
         
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #3498db;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .highlight {
+            background: #E3F2FD;
+            padding: 20px;
+            border-left: 4px solid #2196F3;
+            margin: 20px 0;
+            border-radius: 8px;
         }
         
-        .back-button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
-        }
-        
-        .contact-info {
-            background: #f8f9fa;
+        .contact-box {
+            background: #F5F5F5;
             padding: 20px;
             border-radius: 10px;
-            margin-top: 30px;
+            margin: 30px 0;
         }
         
-        .contact-info h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
+        .contact-box h3 {
+            margin-top: 0;
         }
         
-        .contact-info a {
-            color: #3498db;
+        a {
+            color: #2196F3;
             text-decoration: none;
         }
         
-        .contact-info a:hover {
+        a:hover {
             text-decoration: underline;
         }
         
-        @media (max-width: 768px) {
-            .policy-content {
+        .footer {
+            background: #F5F5F5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .content {
                 padding: 20px;
-                margin: 0 10px;
             }
             
-            .policy-header h1 {
-                font-size: 2rem;
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="policy-page">
-        <div class="policy-container">
-            <a href="/hosgeldiniz.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Ana Sayfaya Dön
-            </a>
-            
-            <div class="policy-content">
-                <div class="policy-header">
-                    <h1>Gizlilik Politikası</h1>
-                    <p class="update-date">Son Güncelleme: 7 Ağustos 2025</p>
-                </div>
-                
-                <div id="privacy-content">
-                    <div class="policy-section">
-                        <h2>1. GENEL BİLGİLER</h2>
-                        <p>Bu gizlilik politikası, SuuApp ("Uygulama", "Biz", "Bizim") tarafından sunulan hizmetlerde kişisel verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.</p>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>2. TOPLANAN VERİLER</h2>
-                        <h3>2.1 Kişisel Bilgiler</h3>
-                        <ul>
-                            <li>Ad ve soyad</li>
-                            <li>Yaş</li>
-                            <li>Cinsiyet</li>
-                            <li>Kilo ve boy bilgileri</li>
-                            <li>Aktivite seviyesi</li>
-                            <li>E-posta adresi (Google hesabı ile giriş)</li>
-                        </ul>
-                        
-                        <h3>2.2 Sağlık ve Aktivite Verileri</h3>
-                        <ul>
-                            <li>Günlük su tüketim miktarları</li>
-                            <li>Su içme alışkanlıkları</li>
-                            <li>Kişiselleştirilmiş su hedefleri</li>
-                            <li>Aktivite geçmişi ve istatistikleri</li>
-                        </ul>
-                        
-                        <h3>2.3 Teknik Veriler</h3>
-                        <ul>
-                            <li>Cihaz bilgileri (model, işletim sistemi)</li>
-                            <li>Uygulama kullanım istatistikleri</li>
-                            <li>Hata raporları ve performans verileri</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>3. VERİLERİN KULLANIM AMAÇLARI</h2>
-                        <h3>3.1 Ana Hizmet Sunumu</h3>
-                        <ul>
-                            <li>Kişiselleştirilmiş su içme hedefleri hesaplama</li>
-                            <li>Günlük su takibi ve hatırlatmalar</li>
-                            <li>İlerleme raporları ve istatistikler</li>
-                            <li>Rozet sistemi ve motivasyon özellikleri</li>
-                        </ul>
-                        
-                        <h3>3.2 İyileştirme ve Geliştirme</h3>
-                        <ul>
-                            <li>Uygulama performansının optimize edilmesi</li>
-                            <li>Yeni özelliklerin geliştirilmesi</li>
-                            <li>Hata düzeltmeleri ve güvenlik güncellemeleri</li>
-                        </ul>
-                        
-                        <h3>3.3 İletişim</h3>
-                        <ul>
-                            <li>Önemli uygulama güncellemeleri</li>
-                            <li>Sağlık ipuçları ve motivasyon mesajları</li>
-                            <li>Destek hizmetleri</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>4. VERİ PAYLAŞIMI</h2>
-                        <p>Verileriniz aşağıdaki durumlar dışında üçüncü taraflarla paylaşılmaz:</p>
-                        <ul>
-                            <li>Yasal yükümlülükler</li>
-                            <li>Kullanıcı güvenliğinin korunması</li>
-                            <li>Hizmet sağlayıcılar (Firebase, Google Services) - sadece teknik altyapı için</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>5. VERİ GÜVENLİĞİ</h2>
-                        <h3>5.1 Teknik Önlemler</h3>
-                        <ul>
-                            <li>Firebase güvenli veritabanı kullanımı</li>
-                            <li>SSL/TLS şifreleme</li>
-                            <li>Güvenli kimlik doğrulama (Google Auth)</li>
-                            <li>Düzenli güvenlik güncellemeleri</li>
-                        </ul>
-                        
-                        <h3>5.2 Erişim Kontrolü</h3>
-                        <ul>
-                            <li>Verilerinize sadece siz erişebilirsiniz</li>
-                            <li>Çok faktörlü kimlik doğrulama</li>
-                            <li>Otomatik oturum sonlandırma</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>6. KULLANICI HAKLARI</h2>
-                        <h3>6.1 Erişim Hakkı</h3>
-                        <ul>
-                            <li>Kişisel verilerinizi görüntüleme</li>
-                            <li>Veri işleme geçmişini öğrenme</li>
-                        </ul>
-                        
-                        <h3>6.2 Düzeltme Hakkı</h3>
-                        <ul>
-                            <li>Yanlış verileri düzeltme</li>
-                            <li>Eksik bilgileri tamamlama</li>
-                        </ul>
-                        
-                        <h3>6.3 Silme Hakkı</h3>
-                        <ul>
-                            <li>Hesabınızı tamamen silme</li>
-                            <li>Tüm verilerinizi kalıcı olarak silme</li>
-                        </ul>
-                        
-                        <h3>6.4 Taşınabilirlik Hakkı</h3>
-                        <ul>
-                            <li>Verilerinizi başka platformlara aktarma</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>7. VERİ SAKLAMA SÜRESİ</h2>
-                        <ul>
-                            <li>Aktif hesaplar: Hesap silinene kadar</li>
-                            <li>Pasif hesaplar: 2 yıl inaktivite sonrası silinir</li>
-                            <li>Hata logları: 30 gün</li>
-                            <li>İstatistik verileri: Anonimleştirilerek 5 yıl</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>8. ÇOCUKLARIN GİZLİLİĞİ</h2>
-                        <p>13 yaş altındaki çocuklardan bilerek veri toplamayız. Ebeveyn izni olmadan 13-18 yaş arası kullanıcılardan veri toplanmaz.</p>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>9. ULUSLARARASI VERİ TRANSFERİ</h2>
-                        <p>Verileriniz Firebase altyapısı kullanılarak işlenir. Google'ın veri koruma standartları uygulanır.</p>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>10. ÇEREZLER VE BENZER TEKNOLOJİLER</h2>
-                        <ul>
-                            <li>Kimlik doğrulama çerezleri</li>
-                            <li>Performans analiz çerezleri</li>
-                            <li>Kullanıcı deneyimi iyileştirme çerezleri</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>11. DEĞİŞİKLİKLER</h2>
-                        <p>Bu politika güncellendiğinde:</p>
-                        <ul>
-                            <li>Uygulama içinde bildirim gösterilir</li>
-                            <li>E-posta ile bilgilendirme yapılır</li>
-                            <li>30 gün önceden duyuru yapılır</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="policy-section">
-                        <h2>12. İLETİŞİM</h2>
-                        <p>Gizlilik ile ilgili sorularınız için:</p>
-                        <ul>
-                            <li>E-posta: <a href="mailto:Suutakip@gmail.com">Suutakip@gmail.com</a></li>
-                            <li>Web: <a href="https://suuapp.com">www.suuapp.com</a></li>
-                        </ul>
-                        <p><em>Bu politika Türkiye Cumhuriyeti Kişisel Verilerin Korunması Kanunu (KVKK) ve AB Genel Veri Koruma Tüzüğü (GDPR) uyumludur.</em></p>
-                    </div>
-                </div>
-                
-                <div class="contact-info">
-                    <h3>İletişim</h3>
-                    <p>Gizlilik politikası ile ilgili sorularınız için: <a href="mailto:Suutakip@gmail.com">Suutakip@gmail.com</a></p>
-                </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💧</div>
+            <h1>Suu - Gizlilik Politikası</h1>
+            <p class="last-updated">Son Güncelleme: 16 Eylül 2025</p>
+        </div>
+        
+        <div class="content">
+            <div class="highlight">
+                <strong>Önemli:</strong> Suu uygulaması olarak gizliliğinize önem veriyoruz. Bu politika, kişisel verilerinizin nasıl toplandığını, kullanıldığını ve korunduğunu açıklar.
             </div>
+
+            <h2>1. Veri Sorumlusu</h2>
+            <p>
+                Suu mobil uygulaması ("Uygulama") tarafından toplanan kişisel verilerin veri sorumlusu, uygulamanın geliştiricisi ve işletmecisidir. 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") ve Avrupa Birliği Genel Veri Koruma Tüzüğü ("GDPR") kapsamında, verilerinizin güvenliği ve gizliliği en yüksek önceliğimizdir.
+            </p>
+
+            <h2>2. Toplanan Veriler</h2>
+            <p>Uygulamamız, size daha iyi hizmet verebilmek için aşağıdaki verileri toplar:</p>
+
+            <h3>2.1 Kişisel Bilgiler</h3>
+            <ul>
+                <li><strong>Ad ve Soyad:</strong> Kişiselleştirilmiş deneyim için</li>
+                <li><strong>E-posta Adresi:</strong> Hesap oluşturma ve iletişim için</li>
+                <li><strong>Profil Fotoğrafı:</strong> İsteğe bağlı, hesap kişiselleştirme için</li>
+                <li><strong>Doğum Tarihi/Yaş:</strong> Su ihtiyacı hesaplaması için</li>
+            </ul>
+
+            <h3>2.2 Sağlık ve Fiziksel Veriler</h3>
+            <ul>
+                <li><strong>Boy ve Kilo:</strong> Günlük su ihtiyacı hesaplaması için</li>
+                <li><strong>Cinsiyet:</strong> Kişiselleştirilmiş su hedefi için</li>
+                <li><strong>Aktivite Seviyesi:</strong> Su tüketimi önerileri için</li>
+                <li><strong>Su Tüketim Verileri:</strong> Günlük, haftalık ve aylık takip için</li>
+                <li><strong>Sağlık Entegrasyonu:</strong> Apple HealthKit ve Google Fit verileri (kullanıcı izniyle)</li>
+            </ul>
+
+            <h3>2.3 Konum Verileri</h3>
+            <ul>
+                <li><strong>Yaklaşık Konum:</strong> Hava durumu bilgisi ve su içme hatırlatmaları için (isteğe bağlı)</li>
+            </ul>
+
+            <h3>2.4 Cihaz ve Kullanım Verileri</h3>
+            <ul>
+                <li>Cihaz modeli ve işletim sistemi</li>
+                <li>Uygulama kullanım istatistikleri</li>
+                <li>Hata raporları ve performans verileri</li>
+                <li>Bildirim tercihleri</li>
+            </ul>
+
+            <h2>3. Verilerin Kullanım Amaçları</h2>
+            <p>Topladığımız verileri aşağıdaki amaçlarla kullanıyoruz:</p>
+            <ul>
+                <li>Günlük su ihtiyacınızı hesaplamak ve kişiselleştirilmiş hedefler belirlemek</li>
+                <li>Su tüketim alışkanlıklarınızı takip etmek ve raporlamak</li>
+                <li>Hatırlatıcılar ve bildirimler göndermek</li>
+                <li>Uygulama deneyimini iyileştirmek ve kişiselleştirmek</li>
+                <li>Teknik destek sağlamak ve hataları gidermek</li>
+                <li>Yasal yükümlülüklerimizi yerine getirmek</li>
+                <li>İstatistiksel analizler ve araştırmalar yapmak (anonim veri ile)</li>
+            </ul>
+
+            <h2>4. Veri Güvenliği</h2>
+            <p>Verilerinizin güvenliğini sağlamak için aşağıdaki önlemleri alıyoruz:</p>
+            <ul>
+                <li><strong>Şifreleme:</strong> Tüm hassas veriler AES-256 şifreleme ile korunur</li>
+                <li><strong>Güvenli İletişim:</strong> Tüm veri transferleri SSL/TLS protokolleri ile gerçekleştirilir</li>
+                <li><strong>Firebase Security:</strong> Google Firebase güvenlik altyapısı kullanılır</li>
+                <li><strong>Erişim Kontrolü:</strong> Verilere erişim, kimlik doğrulama ile sınırlandırılmıştır</li>
+                <li><strong>Düzenli Güvenlik Güncellemeleri:</strong> Uygulama ve altyapı düzenli olarak güncellenir</li>
+            </ul>
+
+            <h2>5. Veri Paylaşımı</h2>
+            <p>Kişisel verileriniz aşağıdaki durumlar dışında üçüncü taraflarla paylaşılmaz:</p>
+            <ul>
+                <li><strong>Yasal Zorunluluklar:</strong> Kanuni yükümlülükler veya resmi makam talepleri</li>
+                <li><strong>Hizmet Sağlayıcılar:</strong> Sadece hizmet sunumu için gerekli olan güvenilir iş ortakları (Firebase, Google Cloud)</li>
+                <li><strong>Kullanıcı İzni:</strong> Açık rızanız ile</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>Önemli Not:</strong> Verileriniz hiçbir zaman reklam veya pazarlama amaçlı üçüncü taraflarla paylaşılmaz veya satılmaz.
+            </div>
+
+            <h2>6. Çocukların Gizliliği</h2>
+            <p>
+                Uygulamamız 13 yaş ve üzeri kullanıcılar için tasarlanmıştır. 13 yaşından küçük çocuklardan bilerek kişisel veri toplamayız. Ebeveyn veya vasi iseniz ve çocuğunuzun izniniz olmadan kişisel bilgi sağladığını düşünüyorsanız, lütfen bizimle iletişime geçin.
+            </p>
+
+            <h2>7. Kullanıcı Hakları</h2>
+            <p>KVKK ve GDPR kapsamında aşağıdaki haklara sahipsiniz:</p>
+            <ul>
+                <li><strong>Bilgi Alma Hakkı:</strong> Verilerinizin işlenip işlenmediğini öğrenme</li>
+                <li><strong>Erişim Hakkı:</strong> İşlenen verilerinize erişim talep etme</li>
+                <li><strong>Düzeltme Hakkı:</strong> Yanlış veya eksik verilerin düzeltilmesini isteme</li>
+                <li><strong>Silme Hakkı:</strong> Verilerinizin silinmesini talep etme</li>
+                <li><strong>İtiraz Hakkı:</strong> Veri işlemeye itiraz etme</li>
+                <li><strong>Taşınabilirlik Hakkı:</strong> Verilerinizi başka bir veri sorumlusuna aktarma</li>
+                <li><strong>Şikayet Hakkı:</strong> Kişisel Verileri Koruma Kurumu'na şikayette bulunma</li>
+            </ul>
+
+            <h2>8. Veri Saklama Süresi</h2>
+            <p>
+                Kişisel verileriniz, kullanım amaçları için gerekli olan süre boyunca veya yasal zorunluluklar gerektirdiği sürece saklanır. Hesabınızı sildiğinizde, verileriniz 30 gün içinde sistemlerimizden kalıcı olarak silinir. Yasal zorunluluklar nedeniyle saklanan veriler, ilgili yasal süre sonunda silinir.
+            </p>
+
+            <h2>9. Çerezler ve Takip Teknolojileri</h2>
+            <p>
+                Uygulamamız, deneyiminizi iyileştirmek için çerezler ve benzer teknolojiler kullanır:
+            </p>
+            <ul>
+                <li><strong>Oturum Çerezleri:</strong> Oturum açma durumunuzu korumak için</li>
+                <li><strong>Tercih Çerezleri:</strong> Dil ve bildirim tercihlerinizi hatırlamak için</li>
+                <li><strong>Analitik:</strong> Firebase Analytics ile anonim kullanım istatistikleri</li>
+            </ul>
+
+            <h2>10. Üçüncü Taraf Hizmetler</h2>
+            <p>Uygulamamız aşağıdaki üçüncü taraf hizmetleri kullanır:</p>
+            <ul>
+                <li><strong>Firebase (Google):</strong> Kimlik doğrulama, veri depolama ve analitik</li>
+                <li><strong>Google Sign-In:</strong> Kolay giriş yapma</li>
+                <li><strong>Apple Sign-In:</strong> iOS cihazlarda güvenli giriş</li>
+                <li><strong>HealthKit/Google Fit:</strong> Sağlık verisi senkronizasyonu (isteğe bağlı)</li>
+            </ul>
+            <p>
+                Bu hizmetlerin kendi gizlilik politikaları bulunmaktadır ve verilerinizi kendi politikalarına göre işleyebilirler.
+            </p>
+
+            <h2>11. Uluslararası Veri Transferi</h2>
+            <p>
+                Verileriniz, hizmet sağlayıcılarımızın sunucularında saklanabilir. Bu sunucular Türkiye dışında bulunabilir. Uluslararası veri transferlerinde, verilerinizin güvenliğini sağlamak için gerekli tüm önlemler alınmaktadır.
+            </p>
+
+            <h2>12. Politika Değişiklikleri</h2>
+            <p>
+                Bu gizlilik politikası zaman zaman güncellenebilir. Önemli değişiklikler yapıldığında, uygulama içi bildirim veya e-posta yoluyla bilgilendirileceksiniz. Değişiklikleri düzenli olarak kontrol etmenizi öneririz.
+            </p>
+
+            <div class="contact-box">
+                <h3>13. İletişim</h3>
+                <p>Gizlilik politikamız hakkında sorularınız veya kişisel verilerinizle ilgili talepleriniz için bizimle iletişime geçebilirsiniz:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> <a href="mailto:privacy@suuapp.com">privacy@suuapp.com</a></li>
+                    <li><strong>Destek:</strong> <a href="mailto:support@suuapp.com">support@suuapp.com</a></li>
+                    <li><strong>Web:</strong> <a href="https://suuapp.com">www.suuapp.com</a></li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    KVKK kapsamındaki başvurularınız için: <a href="mailto:kvkk@suuapp.com">kvkk@suuapp.com</a>
+                </p>
+            </div>
+
+            <h2>14. Yasal Dayanak</h2>
+            <p>
+                Bu gizlilik politikası, 6698 sayılı Kişisel Verilerin Korunması Kanunu, Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) ve ilgili diğer yasal düzenlemeler uyarınca hazırlanmıştır.
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Suu - Tüm hakları saklıdır.</p>
+            <p>Bu gizlilik politikası en son 16 Eylül 2025 tarihinde güncellenmiştir.</p>
         </div>
     </div>
 </body>
