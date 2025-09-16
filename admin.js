@@ -1,5 +1,5 @@
 // Admin System for Suu News Management
-const ADMIN_PASSWORD = 'suu2025admin';
+const ADMIN_PASSWORD = '123987*qa';
 
 // Initialize admin system
 document.addEventListener('DOMContentLoaded', function() {
