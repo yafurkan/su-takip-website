@@ -62,13 +62,14 @@
 
 .suu-announcement-marquee {
     display: inline-block;
-    animation: scroll-text 20s linear infinite;
+    animation: scroll-text 15s linear infinite;
     white-space: nowrap;
+    padding-left: 100%; /* Start off-screen */
 }
 
 @keyframes scroll-text {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
         transform: translateX(-100%);

@@ -52,6 +52,8 @@ class AnnouncementBanner {
         const stored = localStorage.getItem('suu_active_announcements') || '[]';
         const allAnnouncements = JSON.parse(stored);
         
+        console.log('Loading announcements:', allAnnouncements); // Debug log
+        
         // Filter for currently active announcements
         this.announcements = allAnnouncements.filter(announcement => {
             if (!announcement.isActive) return false;
@@ -60,12 +62,23 @@ class AnnouncementBanner {
             const start = new Date(announcement.startDate);
             const end = announcement.endDate ? new Date(announcement.endDate) : null;
             
-            return now >= start && (!end || now <= end);
+            const isTimeActive = now >= start && (!end || now <= end);
+            console.log(`Announcement "${announcement.title}" - Active: ${announcement.isActive}, Time Active: ${isTimeActive}`); // Debug log
+            
+            return isTimeActive;
         });
+        
+        console.log('Filtered active announcements:', this.announcements); // Debug log
     }
 
     displayAnnouncements() {
         if (!this.bannerContainer) return;
+        
+        // Check if banner was manually hidden
+        if (!this.shouldShowBanner()) {
+            this.hideBanner();
+            return;
+        }
         
         if (this.announcements.length === 0) {
             this.hideBanner();
@@ -143,6 +156,8 @@ class AnnouncementBanner {
             this.bannerContainer.style.display = 'block';
             // Adjust body padding to account for banner
             document.body.style.paddingTop = '60px';
+            document.body.classList.add('suu-banner-active');
+            console.log('Banner shown with', this.announcements.length, 'announcements'); // Debug log
         }
     }
 
@@ -150,6 +165,7 @@ class AnnouncementBanner {
         if (this.bannerContainer) {
             this.bannerContainer.style.display = 'none';
             document.body.style.paddingTop = '0';
+            document.body.classList.remove('suu-banner-active');
         }
         
         if (this.scrollInterval) {
@@ -167,6 +183,13 @@ class AnnouncementBanner {
         }
         return true;
     }
+    
+    // Manual refresh function for testing
+    refresh() {
+        console.log('Manually refreshing announcements...');
+        this.loadAnnouncements();
+        this.displayAnnouncements();
+    }
 }
 
 // Auto-initialize when DOM is ready
@@ -174,5 +197,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only initialize if not in admin page
     if (!window.location.pathname.includes('admin.html')) {
         window.suuAnnouncements = new AnnouncementBanner();
+        
+        // Global function for testing
+        window.refreshAnnouncements = function() {
+            if (window.suuAnnouncements) {
+                window.suuAnnouncements.refresh();
+            }
+        };
+        
+        // Clear the hidden flag for testing
+        window.clearAnnouncementHidden = function() {
+            localStorage.removeItem('suu_banner_hidden_until');
+            if (window.suuAnnouncements) {
+                window.suuAnnouncements.refresh();
+            }
+        };
     }
 });
