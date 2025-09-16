@@ -3,422 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Clarity tracking code -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "tabxahhw7s");
-    </script>
-    <title>Kullanım Şartları - Suu</title>
-    <meta name="description" content="Suu uygulaması kullanım şartları ve hizmet koşulları.">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src 'self' https: data:; font-src 'self' https: data:;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://suuapp.com/kullanim-sartlari.html">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-    
+    <title>Suu - Kullanım Şartları</title>
     <style>
-        .terms-page {
-            min-height: 100vh;
-            padding: 120px 0 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .terms-container {
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .terms-content {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
         
-        .terms-header {
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px 30px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
         }
         
-        .terms-header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        h1 {
+            font-size: 32px;
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
-        .terms-header .update-date {
-            color: #7f8c8d;
-            font-size: 1rem;
+        .last-updated {
+            font-size: 14px;
+            opacity: 0.9;
         }
         
-        .terms-section {
-            margin-bottom: 30px;
+        .content {
+            padding: 40px 30px;
         }
         
-        .terms-section h2 {
-            color: #34495e;
-            font-size: 1.5rem;
+        h2 {
+            color: #e74c3c;
+            margin: 30px 0 15px;
+            font-size: 24px;
+            border-bottom: 2px solid #fadbd8;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #c0392b;
+            margin: 20px 0 10px;
+            font-size: 18px;
+        }
+        
+        p {
             margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 4px solid #e74c3c;
+            text-align: justify;
         }
         
-        .terms-section h3 {
-            color: #2c3e50;
-            font-size: 1.2rem;
-            margin: 20px 0 10px 0;
+        ul {
+            margin: 15px 0;
+            padding-left: 30px;
         }
         
-        .terms-section p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .terms-section ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .terms-section li {
-            color: #555;
-            line-height: 1.7;
+        li {
             margin-bottom: 8px;
         }
         
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #e74c3c;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
+        .highlight {
+            background: #fadbd8;
+            padding: 20px;
+            border-left: 4px solid #e74c3c;
+            margin: 20px 0;
+            border-radius: 8px;
         }
         
-        .back-button:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
-        }
-        
-        .contact-info {
-            background: #f8f9fa;
+        .contact-box {
+            background: #F5F5F5;
             padding: 20px;
             border-radius: 10px;
-            margin-top: 30px;
+            margin: 30px 0;
         }
         
-        .contact-info h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
+        .contact-box h3 {
+            margin-top: 0;
         }
         
-        .contact-info a {
+        a {
             color: #e74c3c;
             text-decoration: none;
         }
         
-        .contact-info a:hover {
+        a:hover {
             text-decoration: underline;
         }
         
-        @media (max-width: 768px) {
-            .terms-content {
+        .footer {
+            background: #F5F5F5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .content {
                 padding: 20px;
-                margin: 0 10px;
             }
             
-            .terms-header h1 {
-                font-size: 2rem;
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="terms-page">
-        <div class="terms-container">
-            <a href="/hosgeldiniz.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Ana Sayfaya Dön
-            </a>
-            
-            <div class="terms-content">
-                <div class="terms-header">
-                    <h1>Kullanım Şartları</h1>
-                    <p class="update-date">Son Güncelleme: 7 Ağustos 2025</p>
-                </div>
-                
-                <div id="terms-content">
-                    <div class="terms-section">
-                        <h2>1. GENEL HÜKÜMLER</h2>
-                        <h3>1.1 Taraflar</h3>
-                        <p>Bu sözleşme, SuuApp ("Şirket", "Biz") ile uygulamayı kullanan kişi ("Kullanıcı", "Siz") arasında yapılmıştır.</p>
-                        
-                        <h3>1.2 Kabul</h3>
-                        <p>Uygulamayı kullanarak bu şartları kabul etmiş sayılırsınız.</p>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>2. HİZMET TANIMI</h2>
-                        <h3>2.1 SuuApp Nedir?</h3>
-                        <ul>
-                            <li>Günlük su tüketimi takip uygulaması</li>
-                            <li>Kişiselleştirilmiş su içme hedefleri</li>
-                            <li>Sağlık odaklı hatırlatma sistemi</li>
-                            <li>İlerleme takibi ve motivasyon araçları</li>
-                        </ul>
-                        
-                        <h3>2.2 Hizmet Kapsamı</h3>
-                        <ul>
-                            <li>Ücretsiz temel özellikler</li>
-                            <li>Premium özellikler (gelecekte eklenebilir)</li>
-                            <li>Bildirim ve hatırlatma hizmetleri</li>
-                            <li>İstatistik ve analiz araçları</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>3. KULLANICI YÜKÜMLÜLÜKLERİ</h2>
-                        <h3>3.1 Doğru Bilgi Verme</h3>
-                        <ul>
-                            <li>Kişisel bilgilerinizi doğru ve güncel tutmak</li>
-                            <li>Yaş, kilo, boy gibi verileri gerçeğe uygun girmek</li>
-                            <li>Hesap bilgilerinizi güvenli tutmak</li>
-                        </ul>
-                        
-                        <h3>3.2 Uygun Kullanım</h3>
-                        <ul>
-                            <li>Uygulamayı amacına uygun kullanmak</li>
-                            <li>Diğer kullanıcılara zarar vermemek</li>
-                            <li>Yasalara aykırı davranışlarda bulunmamak</li>
-                        </ul>
-                        
-                        <h3>3.3 Güvenlik</h3>
-                        <ul>
-                            <li>Hesap bilgilerinizi üçüncü kişilerle paylaşmamak</li>
-                            <li>Şüpheli aktiviteleri bildirmek</li>
-                            <li>Güvenlik güncellemelerini yapmak</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>4. YASAK DAVRANIŞLAR</h2>
-                        <h3>4.1 Teknik Kötüye Kullanım</h3>
-                        <ul>
-                            <li>Sistemi hacklemek veya zarar vermek</li>
-                            <li>Otomatik botlar kullanmak</li>
-                            <li>Sahte hesaplar oluşturmak</li>
-                        </ul>
-                        
-                        <h3>4.2 İçerik İhlalleri</h3>
-                        <ul>
-                            <li>Yanıltıcı sağlık bilgileri paylaşmak</li>
-                            <li>Telif hakkı ihlali yapmak</li>
-                            <li>Spam veya reklam göndermek</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>5. FİKRİ MÜLKİYET HAKLARI</h2>
-                        <h3>5.1 Uygulama Hakları</h3>
-                        <ul>
-                            <li>Tüm haklar SuuApp'e aittir</li>
-                            <li>Logo, tasarım, kodlar korunmaktadır</li>
-                            <li>İzinsiz kullanım yasaktır</li>
-                        </ul>
-                        
-                        <h3>5.2 Kullanıcı İçerikleri</h3>
-                        <ul>
-                            <li>Girdiğiniz veriler size aittir</li>
-                            <li>Bize sınırlı kullanım hakkı veriyorsunuz</li>
-                            <li>İstatistik ve geliştirme amaçlı kullanabiliriz</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>6. SAĞLIK VE GÜVENLİK UYARISI</h2>
-                        <h3>6.1 Tıbbi Tavsiye Değildir</h3>
-                        <ul>
-                            <li>Uygulama tıbbi tavsiye vermez</li>
-                            <li>Sağlık sorunları için doktora başvurun</li>
-                            <li>Özel durumlarınızı doktorunuzla paylaşın</li>
-                        </ul>
-                        
-                        <h3>6.2 Kişisel Sorumluluk</h3>
-                        <ul>
-                            <li>Su tüketim miktarlarını kendiniz belirleyin</li>
-                            <li>Vücut durumunuzu dikkate alın</li>
-                            <li>Aşırı su tüketiminden kaçının</li>
-                        </ul>
-                        
-                        <h3>6.3 Risk Uyarısı</h3>
-                        <ul>
-                            <li>Böbrek hastalığı olanlar dikkatli olun</li>
-                            <li>Kalp hastalığı varsa doktor onayı alın</li>
-                            <li>Hamilelik durumunda hekim danışın</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>7. HİZMET KESİNTİLERİ</h2>
-                        <h3>7.1 Planlı Kesintiler</h3>
-                        <ul>
-                            <li>Bakım çalışmaları önceden duyurulur</li>
-                            <li>Güncellemeler için geçici kesintiler olabilir</li>
-                        </ul>
-                        
-                        <h3>7.2 Beklenmeyen Kesintiler</h3>
-                        <ul>
-                            <li>Teknik arızalar durumunda</li>
-                            <li>Güvenlik tehditleri halinde</li>
-                            <li>Force majeure durumları</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>8. ÜCRET VE ÖDEME</h2>
-                        <h3>8.1 Ücretsiz Hizmetler</h3>
-                        <ul>
-                            <li>Temel özellikler ücretsizdir</li>
-                            <li>Reklam gösterilebilir</li>
-                        </ul>
-                        
-                        <h3>8.2 Premium Özellikler (Gelecek)</h3>
-                        <ul>
-                            <li>Ücretli özellikler eklenebilir</li>
-                            <li>30 gün önceden duyurulur</li>
-                            <li>İptal hakkınız saklıdır</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>9. HESAP SİLME VE FESİH</h2>
-                        <h3>9.1 Kullanıcı Tarafından</h3>
-                        <ul>
-                            <li>İstediğiniz zaman hesabınızı silebilirsiniz</li>
-                            <li>Verileriniz kalıcı olarak silinir</li>
-                            <li>Geri dönüş mümkün değildir</li>
-                        </ul>
-                        
-                        <h3>9.2 Şirket Tarafından</h3>
-                        <ul>
-                            <li>Şartları ihlal etmeniz halinde</li>
-                            <li>Yasadışı faaliyetler durumunda</li>
-                            <li>30 gün önceden uyarı ile</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>10. SORUMLULUK SINIRLAMALARI</h2>
-                        <h3>10.1 Hizmet Kalitesi</h3>
-                        <ul>
-                            <li>"Olduğu gibi" hizmet sunuyoruz</li>
-                            <li>%100 kesintisiz hizmet garantisi vermiyoruz</li>
-                            <li>Veri kaybı riskini kabul ediyorsunuz</li>
-                        </ul>
-                        
-                        <h3>10.2 Dolaylı Zararlar</h3>
-                        <ul>
-                            <li>Kazanç kaybından sorumlu değiliz</li>
-                            <li>Üçüncü taraf zararlarından sorumlu değiliz</li>
-                            <li>Maksimum sorumluluk: Son 12 ay ödenen ücret</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>11. UYUŞMAZLIK ÇÖZÜMÜ</h2>
-                        <h3>11.1 Öncelikle Görüşme</h3>
-                        <ul>
-                            <li>Sorunları önce dostane çözmeye çalışırız</li>
-                            <li>Müşteri hizmetlerimize başvurun</li>
-                        </ul>
-                        
-                        <h3>11.2 Hukuki Süreç</h3>
-                        <ul>
-                            <li>Türkiye Cumhuriyeti yasaları uygulanır</li>
-                            <li>İstanbul mahkemeleri yetkilidir</li>
-                            <li>Arabuluculuk tercih edilir</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>12. DEĞİŞİKLİKLER</h2>
-                        <h3>12.1 Güncelleme Hakkı</h3>
-                        <ul>
-                            <li>Şartları güncelleme hakkımız saklıdır</li>
-                            <li>30 gün önceden duyuru yapılır</li>
-                            <li>Kabul etmiyorsanız hesabınızı silebilirsiniz</li>
-                        </ul>
-                        
-                        <h3>12.2 Duyuru Kanalları</h3>
-                        <ul>
-                            <li>Uygulama içi bildirim</li>
-                            <li>E-posta bildirimi</li>
-                            <li>Web sitesi duyurusu</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>13. İLETİŞİM BİLGİLERİ</h2>
-                        <p><strong>SuuApp</strong></p>
-                        <ul>
-                            <li>Web: <a href="https://suuapp.com">www.suuapp.com</a></li>
-                            <li>E-posta: <a href="mailto:Suutakip@gmail.com">Suutakip@gmail.com</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="terms-section">
-                        <h2>14. DİĞER HÜKÜMLER</h2>
-                        <h3>14.1 Bölünebilirlik</h3>
-                        <p>Bir maddenin geçersizliği diğerlerini etkilemez</p>
-                        
-                        <h3>14.2 Feragat</h3>
-                        <p>Bir hakkı kullanmamak feragat sayılmaz</p>
-                        
-                        <h3>14.3 Devir</h3>
-                        <ul>
-                            <li>Haklarınızı başkasına devredemezsiniz</li>
-                            <li>Biz haklarımızı devredebiliriz</li>
-                        </ul>
-                        
-                        <p><em>Bu şartlar Türkiye Cumhuriyeti hukuku uyarınca hazırlanmıştır.</em></p>
-                        <p><em>Son güncelleme: 7 Ağustos 2025</em></p>
-                    </div>
-                </div>
-                
-                <div class="contact-info">
-                    <h3>İletişim</h3>
-                    <p>Kullanım şartları ile ilgili sorularınız için: <a href="mailto:Suutakip@gmail.com">Suutakip@gmail.com</a></p>
-                </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💧</div>
+            <h1>Suu - Kullanım Şartları</h1>
+            <p class="last-updated">Son Güncelleme: 16 Eylül 2025</p>
+        </div>
+        
+        <div class="content">
+            <div class="highlight">
+                <strong>Önemli:</strong> Suu uygulamasını kullanarak bu şartları kabul etmiş sayılırsınız. Lütfen dikkatlice okuyunuz.
             </div>
+
+            <h2>1. Genel Hükümler</h2>
+            <h3>1.1 Taraflar</h3>
+            <p>Bu sözleşme, Suu mobil uygulamasının ("Uygulama") sağlayıcısı ("Şirket", "Biz") ile uygulamayı kullanan kişi ("Kullanıcı", "Siz") arasında yapılmıştır.</p>
+            
+            <h3>1.2 Kabul</h3>
+            <p>Uygulamayı indirerek, kurarak veya kullanarak bu kullanım şartlarını tamamen okumuş ve kabul etmiş sayılırsınız. Eğer bu şartları kabul etmiyorsanız, uygulamayı kullanmamalısınız.</p>
+
+            <h2>2. Hizmet Tanımı</h2>
+            <h3>2.1 Suu Uygulaması Nedir?</h3>
+            <p>Suu, kullanıcıların günlük su tüketimlerini takip etmelerine yardımcı olan bir mobil uygulamadır. Uygulama aşağıdaki özellikleri sunar:</p>
+            <ul>
+                <li>Günlük su tüketimi takibi</li>
+                <li>Kişiselleştirilmiş su içme hedefleri</li>
+                <li>Hatırlatma ve bildirim sistemi</li>
+                <li>İlerleme takibi ve istatistikler</li>
+                <li>Sağlık entegrasyonu (HealthKit, Google Fit)</li>
+            </ul>
+            
+            <h3>2.2 Hizmet Kapsamı</h3>
+            <p>Uygulama ücretsiz temel özellikler sunar. Gelecekte premium özellikler eklenebilir ve bunlar için ücret alınabilir. Herhangi bir ücretli hizmet başlamadan önce kullanıcılar bilgilendirilecektir.</p>
+
+            <h2>3. Kullanıcı Yükümlülükleri</h2>
+            <h3>3.1 Doğru Bilgi Verme</h3>
+            <p>Uygulamayı etkili bir şekilde kullanabilmek için aşağıdaki yükümlülükleri kabul ediyorsunuz:</p>
+            <ul>
+                <li>Kişisel bilgilerinizi doğru ve güncel tutmak</li>
+                <li>Yaş, kilo, boy gibi verileri gerçeğe uygun girmek</li>
+                <li>Hesap bilgilerinizi güvenli tutmak</li>
+                <li>Su tüketim verilerinizi düzgün kaydetmek</li>
+            </ul>
+            
+            <h3>3.2 Uygun Kullanım</h3>
+            <ul>
+                <li>Uygulamayı amacına uygun kullanmak</li>
+                <li>Diğer kullanıcılara veya sisteme zarar vermemek</li>
+                <li>Yasalara aykırı davranışlarda bulunmamak</li>
+                <li>Uygulamayı ticari amaçla izinsiz kullanmamak</li>
+            </ul>
+
+            <h2>4. Yasak Davranışlar</h2>
+            <p>Aşağıdaki davranışlar kesinlikle yasaktır ve hesabınızın kapatılmasına neden olabilir:</p>
+            
+            <h3>4.1 Teknik Kötüye Kullanım</h3>
+            <ul>
+                <li>Sistemi hacklemek veya zarar vermeye çalışmak</li>
+                <li>Otomatik botlar veya scriptler kullanmak</li>
+                <li>Sahte hesaplar oluşturmak</li>
+                <li>Virüs, malware veya zararlı kod yaymak</li>
+            </ul>
+            
+            <h3>4.2 İçerik İhlalleri</h3>
+            <ul>
+                <li>Yanıltıcı sağlık bilgileri paylaşmak</li>
+                <li>Telif hakkı ihlali yapmak</li>
+                <li>Spam veya istenmeyen içerik göndermek</li>
+                <li>Diğer kullanıcıları taciz etmek</li>
+            </ul>
+
+            <h2>5. Fikri Mülkiyet Hakları</h2>
+            <h3>5.1 Uygulama Hakları</h3>
+            <p>Suu uygulaması, logo, tasarım, kod ve tüm içerik üzerindeki tüm fikri mülkiyet hakları şirkete aittir. Bu haklar ulusal ve uluslararası telif hakkı yasaları ile korunmaktadır.</p>
+            
+            <h3>5.2 Kullanıcı İçerikleri</h3>
+            <p>Uygulamaya girdiğiniz kişisel veriler ve su tüketim bilgileri size aittir. Ancak, uygulamayı geliştirmek ve hizmet sunmak için bu verileri kullanmamıza sınırlı lisans vermiş sayılırsınız.</p>
+
+            <h2>6. Sağlık ve Güvenlik Uyarısı</h2>
+            <div class="highlight">
+                <strong>Kritik Uyarı:</strong> Suu uygulaması tıbbi tavsiye vermez ve bir sağlık profesyonelinin yerini tutmaz.
+            </div>
+            
+            <h3>6.1 Tıbbi Tavsiye Değildir</h3>
+            <ul>
+                <li>Uygulama sadece genel rehberlik sağlar</li>
+                <li>Sağlık sorunları için mutlaka doktora başvurun</li>
+                <li>Özel sağlık durumlarınızı doktorunuzla paylaşın</li>
+                <li>Uygulamanın önerileri tıbbi tavsiye yerine geçmez</li>
+            </ul>
+            
+            <h3>6.2 Kişisel Sorumluluk</h3>
+            <ul>
+                <li>Su tüketim miktarını kendi durumunuza göre ayarlayın</li>
+                <li>Vücut durumunuzu ve sağlık geçmişinizi dikkate alın</li>
+                <li>Aşırı su tüketiminin zararlı olabileceğini bilin</li>
+                <li>Kendinizi kötü hissederseniz uygulamayı durdurun</li>
+            </ul>
+
+            <h2>7. Hizmet Kesintileri ve Kullanılabilirlik</h2>
+            <h3>7.1 Planlı Kesintiler</h3>
+            <p>Sistem bakımı, güncelleme ve iyileştirme çalışmaları için hizmet geçici olarak kesilebilir. Bu durumlar mümkün olduğunca önceden duyurulacaktır.</p>
+            
+            <h3>7.2 Beklenmeyen Kesintiler</h3>
+            <p>Teknik arızalar, güvenlik tehditleri veya force majeure durumlarında hizmet kesintisi yaşanabilir. Bu durumlardan dolayı sorumluluk kabul etmiyoruz.</p>
+
+            <h2>8. Ücretsiz Hizmet ve Gelecekteki Değişiklikler</h2>
+            <h3>8.1 Mevcut Ücretsiz Hizmetler</h3>
+            <p>Suu uygulaması şu anda tamamen ücretsiz olarak sunulmaktadır. Temel özellikler her zaman ücretsiz kalacaktır.</p>
+            
+            <h3>8.2 Gelecekteki Premium Özellikler</h3>
+            <p>Gelecekte ek premium özellikler sunulabilir. Bu durumda:</p>
+            <ul>
+                <li>30 gün önceden duyuru yapılacaktır</li>
+                <li>Mevcut temel özellikler ücretsiz kalacaktır</li>
+                <li>Premium özellikleri kullanmak zorunda değilsiniz</li>
+                <li>İptal hakkınız her zaman saklıdır</li>
+            </ul>
+
+            <h2>9. Hesap Yönetimi ve Fesih</h2>
+            <h3>9.1 Kullanıcı Tarafından Fesih</h3>
+            <ul>
+                <li>İstediğiniz zaman hesabınızı silebilirsiniz</li>
+                <li>Verileriniz 30 gün içinde kalıcı olarak silinir</li>
+                <li>Geri dönüş mümkün olmayabilir</li>
+                <li>Silme işlemi geri alınamaz</li>
+            </ul>
+            
+            <h3>9.2 Şirket Tarafından Fesih</h3>
+            <p>Aşağıdaki durumlarda hesabınızı kapatma hakkımız saklıdır:</p>
+            <ul>
+                <li>Bu şartları ihlal etmeniz halinde</li>
+                <li>Yasadışı faaliyetler tespit edilmesi durumunda</li>
+                <li>Sisteme zarar verici davranışlarda bulunmanız halinde</li>
+                <li>Mümkün olduğunca 30 gün önceden uyarı ile</li>
+            </ul>
+
+            <h2>10. Sorumluluk Sınırlamaları</h2>
+            <h3>10.1 Hizmet Kalitesi</h3>
+            <p>Uygulamayı "olduğu gibi" sunuyoruz ve aşağıdaki konularda garanti veremeyiz:</p>
+            <ul>
+                <li>%100 kesintisiz hizmet</li>
+                <li>Veri kaybının olmaması</li>
+                <li>Tüm cihazlarda mükemmel çalışma</li>
+                <li>Hata ve arızaların olmaması</li>
+            </ul>
+            
+            <h3>10.2 Zarar Sınırlamaları</h3>
+            <p>Aşağıdaki durumlardan dolayı sorumlu değiliz:</p>
+            <ul>
+                <li>Dolaylı veya sonucu olan zararlar</li>
+                <li>Kazanç kaybı veya iş kayıpları</li>
+                <li>Üçüncü taraflardan kaynaklanan zararlar</li>
+                <li>Veri kaybından doğan zararlar</li>
+            </ul>
+
+            <h2>11. Gizlilik ve Veri Koruma</h2>
+            <p>Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında detaylı bilgi için <a href="gizlilik-politikasi.html">Gizlilik Politikamızı</a> inceleyiniz. Gizlilik politikası bu kullanım şartlarının ayrılmaz bir parçasıdır.</p>
+
+            <h2>12. Uygulanacak Hukuk ve Yetki</h2>
+            <h3>12.1 Uygulanacak Hukuk</h3>
+            <p>Bu sözleşme Türkiye Cumhuriyeti yasalarına tabidir ve bu yasalara uygun olarak yorumlanır.</p>
+            
+            <h3>12.2 Yetki</h3>
+            <p>Bu sözleşmeden doğacak uyuşmazlıklarda İstanbul mahkemeleri ve icra daireleri yetkilidir.</p>
+            
+            <h3>12.3 Uyuşmazlık Çözümü</h3>
+            <p>Uyuşmazlıkları öncelikle dostane görüşmelerle çözmeye çalışırız. Bu mümkün olmazsa arabuluculuk ve sonrasında mahkeme yoluna başvururuz.</p>
+
+            <h2>13. Değişiklikler ve Güncellemeler</h2>
+            <h3>13.1 Güncelleme Hakkı</h3>
+            <p>Bu kullanım şartlarını gerektiğinde güncelleme hakkımız saklıdır. Önemli değişiklikler için:</p>
+            <ul>
+                <li>30 gün önceden duyuru yapılır</li>
+                <li>Uygulama içi bildirim gönderilir</li>
+                <li>E-posta ile bilgilendirilirsiniz</li>
+                <li>Web sitesinde duyuru yapılır</li>
+            </ul>
+            
+            <h3>13.2 Kabul ve Red</h3>
+            <p>Güncellenmiş şartları kabul etmiyorsanız hesabınızı kapatabilirsiniz. Uygulamayı kullanmaya devam etmeniz yeni şartları kabul ettiğiniz anlamına gelir.</p>
+
+            <h2>14. Diğer Hükümler</h2>
+            <h3>14.1 Bölünebilirlik</h3>
+            <p>Bu sözleşmenin herhangi bir maddesinin geçersiz sayılması diğer maddelerin geçerliliğini etkilemez.</p>
+            
+            <h3>14.2 Feragat</h3>
+            <p>Bir hakkı kullanmamak o haktan feragat ettiğimiz anlamına gelmez.</p>
+            
+            <h3>14.3 Devir</h3>
+            <p>Bu sözleşmeden doğan hak ve yükümlülüklerinizi üçüncü şahıslara devredemezsiniz. Bizim haklarımızı devretme hakkımız saklıdır.</p>
+            
+            <h3>14.4 Bütünlük</h3>
+            <p>Bu kullanım şartları ve gizlilik politikası aramızdaki tam anlaşmayı oluşturur.</p>
+
+            <div class="contact-box">
+                <h3>15. İletişim Bilgileri</h3>
+                <p>Bu kullanım şartları hakkında sorularınız veya önerileriniz için bizimle iletişime geçebilirsiniz:</p>
+                <ul>
+                    <li><strong>E-posta:</strong> <a href="mailto:support@suuapp.com">support@suuapp.com</a></li>
+                    <li><strong>Hukuki Konular:</strong> <a href="mailto:legal@suuapp.com">legal@suuapp.com</a></li>
+                    <li><strong>Web:</strong> <a href="https://suuapp.com">www.suuapp.com</a></li>
+                </ul>
+                <p style="margin-top: 15px;">
+                    <strong>Yanıt Süresi:</strong> İletişim taleplerinize en geç 7 iş günü içinde dönüş sağlanır.
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Suu - Tüm hakları saklıdır.</p>
+            <p>Bu kullanım şartları en son 16 Eylül 2025 tarihinde güncellenmiştir.</p>
         </div>
     </div>
 </body>
