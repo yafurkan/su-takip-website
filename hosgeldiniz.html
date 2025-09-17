@@ -82,6 +82,28 @@
     </script>
 </head>
 <body>
+    <!-- Test Banner - Geçici -->
+    <div id="test-announcement-banner" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 15px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto;">
+            <div style="flex: 1; overflow: hidden;">
+                <div style="animation: scroll-banner 15s linear infinite; white-space: nowrap; display: inline-block;">
+                    <span style="font-size: 18px; margin-right: 8px;">✨</span>
+                    <strong>Test Duyuru:</strong> Bu kayan yazı banner sistemi çalışıyor! Duyuru yönetim sistemi aktif! 🚀
+                </div>
+            </div>
+            <button onclick="this.parentElement.parentElement.style.display='none'; document.body.style.paddingTop='0';" style="background: rgba(255,255,255,0.2); border: none; color: white; font-size: 24px; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; margin-left: 20px;">×</button>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes scroll-banner {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        body {
+            padding-top: 60px !important;
+        }
+    </style>
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="water-drop-loader">
