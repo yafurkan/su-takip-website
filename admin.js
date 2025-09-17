@@ -54,6 +54,8 @@ function showAdminPanel() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('adminPanel').classList.add('show');
     loadNewsList();
+    // Mevcut duyuruları da güncelleyelim
+    updateMainSiteAnnouncements();
 }
 
 function showTab(tabName, event) {
