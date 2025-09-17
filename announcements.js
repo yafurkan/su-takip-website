@@ -196,6 +196,9 @@ class AnnouncementBanner {
 document.addEventListener('DOMContentLoaded', function() {
     // Only initialize if not in admin page
     if (!window.location.pathname.includes('admin.html')) {
+        // Test duyuru oluştur (geçici)
+        createTestAnnouncement();
+        
         window.suuAnnouncements = new AnnouncementBanner();
         
         // Global function for testing
@@ -214,3 +217,31 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 });
+
+// Test duyuru oluştur (debugging için)
+function createTestAnnouncement() {
+    const testAnnouncement = {
+        id: Date.now(),
+        title: 'Test Duyuru',
+        type: 'update',
+        text: 'Banner sistemi şu anda test ediliyor! Kayan yazı çalışıyor mu? 🚀',
+        startDate: new Date(Date.now() - 1000 * 60 * 60).toISOString(), // 1 saat önce
+        endDate: new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString(), // 1 gün sonra
+        isActive: true,
+        isScrolling: true,
+        created: new Date().toISOString()
+    };
+    
+    // Ana duyuru listesine ekle
+    let announcements = JSON.parse(localStorage.getItem('suu_announcements') || '[]');
+    const existingIndex = announcements.findIndex(a => a.title === 'Test Duyuru');
+    if (existingIndex === -1) {
+        announcements.unshift(testAnnouncement);
+        localStorage.setItem('suu_announcements', JSON.stringify(announcements));
+    }
+    
+    // Aktif duyuruları güncelle
+    localStorage.setItem('suu_active_announcements', JSON.stringify([testAnnouncement]));
+    
+    console.log('Test duyuru oluşturuldu:', testAnnouncement);
+}
