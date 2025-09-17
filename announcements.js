@@ -172,13 +172,14 @@ class AnnouncementBanner {
             clearInterval(this.scrollInterval);
         }
         
-        // Hide for 1 hour
-        localStorage.setItem('suu_banner_hidden_until', Date.now() + (60 * 60 * 1000));
+        // Sadece mevcut oturum için gizle (sayfa yenilenince tekrar görünsün)
+        sessionStorage.setItem('suu_banner_hidden_session', 'true');
     }
 
     shouldShowBanner() {
-        const hiddenUntil = localStorage.getItem('suu_banner_hidden_until');
-        if (hiddenUntil && Date.now() < parseInt(hiddenUntil)) {
+        // Sadece mevcut oturumda gizlendi mi kontrol et
+        const hiddenInSession = sessionStorage.getItem('suu_banner_hidden_session');
+        if (hiddenInSession === 'true') {
             return false;
         }
         return true;
@@ -210,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Clear the hidden flag for testing
         window.clearAnnouncementHidden = function() {
-            localStorage.removeItem('suu_banner_hidden_until');
+            sessionStorage.removeItem('suu_banner_hidden_session');
             if (window.suuAnnouncements) {
                 window.suuAnnouncements.refresh();
             }
