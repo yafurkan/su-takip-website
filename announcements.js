@@ -196,8 +196,8 @@ class AnnouncementBanner {
 document.addEventListener('DOMContentLoaded', function() {
     // Only initialize if not in admin page
     if (!window.location.pathname.includes('admin.html')) {
-        // Test duyuru oluştur (geçici)
-        createTestAnnouncement();
+        // Sadece bir kez hoş geldiniz duyurusu ekle
+        initWelcomeAnnouncement();
         
         window.suuAnnouncements = new AnnouncementBanner();
         
@@ -218,30 +218,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Test duyuru oluştur (debugging için)
-function createTestAnnouncement() {
-    const testAnnouncement = {
-        id: Date.now(),
-        title: 'Test Duyuru',
-        type: 'update',
-        text: 'Banner sistemi şu anda test ediliyor! Kayan yazı çalışıyor mu? 🚀',
-        startDate: new Date(Date.now() - 1000 * 60 * 60).toISOString(), // 1 saat önce
-        endDate: new Date(Date.now() + 1000 * 60 * 60 * 24).toISOString(), // 1 gün sonra
-        isActive: true,
-        isScrolling: true,
-        created: new Date().toISOString()
-    };
+// Hoş geldiniz duyurusu sadece bir kez ekle
+function initWelcomeAnnouncement() {
+    // Eğer daha önce hoş geldiniz duyurusu eklendiyse, tekrar ekleme
+    const announcements = JSON.parse(localStorage.getItem('suu_announcements') || '[]');
+    const hasWelcome = announcements.some(a => a.title === 'Suu Uygulamasına Hoş Geldiniz');
     
-    // Ana duyuru listesine ekle
-    let announcements = JSON.parse(localStorage.getItem('suu_announcements') || '[]');
-    const existingIndex = announcements.findIndex(a => a.title === 'Test Duyuru');
-    if (existingIndex === -1) {
-        announcements.unshift(testAnnouncement);
+    if (!hasWelcome) {
+        const welcomeAnnouncement = {
+            id: Date.now(),
+            title: 'Suu Uygulamasına Hoş Geldiniz',
+            type: 'celebration',
+            text: 'Günlük su ihtiyacınızı takip edin, sağlıklı kalın! 💧 Sağlıklı yaşam yolculuğunuza hoş geldiniz! 🌟',
+            startDate: new Date().toISOString(),
+            endDate: null, // Süresiz
+            isActive: true,
+            isScrolling: true,
+            created: new Date().toISOString()
+        };
+        
+        announcements.unshift(welcomeAnnouncement);
         localStorage.setItem('suu_announcements', JSON.stringify(announcements));
+        
+        // Aktif duyuruları güncelle
+        updateActiveAnnouncements();
+        
+        console.log('Hoş geldiniz duyurusu eklendi');
     }
+}
+
+// Aktif duyuruları güncelle
+function updateActiveAnnouncements() {
+    const announcements = JSON.parse(localStorage.getItem('suu_announcements') || '[]');
+    const activeAnnouncements = announcements.filter(a => {
+        if (!a.isActive) return false;
+        const now = new Date();
+        const start = new Date(a.startDate);
+        const end = a.endDate ? new Date(a.endDate) : null;
+        return now >= start && (!end || now <= end);
+    });
     
-    // Aktif duyuruları güncelle
-    localStorage.setItem('suu_active_announcements', JSON.stringify([testAnnouncement]));
-    
-    console.log('Test duyuru oluşturuldu:', testAnnouncement);
+    localStorage.setItem('suu_active_announcements', JSON.stringify(activeAnnouncements));
 }
